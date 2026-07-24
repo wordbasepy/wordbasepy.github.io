@@ -2024,15 +2024,7 @@ tokenizer cannot be loaded, emitting a UserWarning in that case.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/wordbase/providers/huggingface_inference.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-352">352</a></span>
-<span class="normal"><a href="#__codelineno-0-353">353</a></span>
-<span class="normal"><a href="#__codelineno-0-354">354</a></span>
-<span class="normal"><a href="#__codelineno-0-355">355</a></span>
-<span class="normal"><a href="#__codelineno-0-356">356</a></span>
-<span class="normal"><a href="#__codelineno-0-357">357</a></span>
-<span class="normal"><a href="#__codelineno-0-358">358</a></span>
-<span class="normal"><a href="#__codelineno-0-359">359</a></span>
-<span class="normal"><a href="#__codelineno-0-360">360</a></span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-360">360</a></span>
 <span class="normal"><a href="#__codelineno-0-361">361</a></span>
 <span class="normal"><a href="#__codelineno-0-362">362</a></span>
 <span class="normal"><a href="#__codelineno-0-363">363</a></span>
@@ -2061,44 +2053,52 @@ tokenizer cannot be loaded, emitting a UserWarning in that case.</p>
 <span class="normal"><a href="#__codelineno-0-386">386</a></span>
 <span class="normal"><a href="#__codelineno-0-387">387</a></span>
 <span class="normal"><a href="#__codelineno-0-388">388</a></span>
-<span class="normal"><a href="#__codelineno-0-389">389</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-352" name="__codelineno-0-352"></a><span class="k">def</span><span class="w"> </span><span class="nf">count_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<a id="__codelineno-0-353" name="__codelineno-0-353"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Count tokens using a lazy-loaded tokenizer.</span>
-<a id="__codelineno-0-354" name="__codelineno-0-354"></a>
-<a id="__codelineno-0-355" name="__codelineno-0-355"></a><span class="sd">    Attempts to load the model&#39;s tokenizer via ``transformers`` on the</span>
-<a id="__codelineno-0-356" name="__codelineno-0-356"></a><span class="sd">    first call. Falls back to a character-based approximation</span>
-<a id="__codelineno-0-357" name="__codelineno-0-357"></a><span class="sd">    (1 token ≈ 4 characters) when ``transformers`` is unavailable or the</span>
-<a id="__codelineno-0-358" name="__codelineno-0-358"></a><span class="sd">    tokenizer cannot be loaded, emitting a UserWarning in that case.</span>
-<a id="__codelineno-0-359" name="__codelineno-0-359"></a>
-<a id="__codelineno-0-360" name="__codelineno-0-360"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-361" name="__codelineno-0-361"></a><span class="sd">        text: Text to tokenize and count.</span>
+<span class="normal"><a href="#__codelineno-0-389">389</a></span>
+<span class="normal"><a href="#__codelineno-0-390">390</a></span>
+<span class="normal"><a href="#__codelineno-0-391">391</a></span>
+<span class="normal"><a href="#__codelineno-0-392">392</a></span>
+<span class="normal"><a href="#__codelineno-0-393">393</a></span>
+<span class="normal"><a href="#__codelineno-0-394">394</a></span>
+<span class="normal"><a href="#__codelineno-0-395">395</a></span>
+<span class="normal"><a href="#__codelineno-0-396">396</a></span>
+<span class="normal"><a href="#__codelineno-0-397">397</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-360" name="__codelineno-0-360"></a><span class="k">def</span><span class="w"> </span><span class="nf">count_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-0-361" name="__codelineno-0-361"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Count tokens using a lazy-loaded tokenizer.</span>
 <a id="__codelineno-0-362" name="__codelineno-0-362"></a>
-<a id="__codelineno-0-363" name="__codelineno-0-363"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-364" name="__codelineno-0-364"></a><span class="sd">        Token count, exact when a tokenizer is available or approximate</span>
-<a id="__codelineno-0-365" name="__codelineno-0-365"></a><span class="sd">        otherwise (minimum 1).</span>
-<a id="__codelineno-0-366" name="__codelineno-0-366"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-367" name="__codelineno-0-367"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer_loaded</span><span class="p">:</span>
-<a id="__codelineno-0-368" name="__codelineno-0-368"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-0-369" name="__codelineno-0-369"></a>            <span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>  <span class="c1"># pylint: disable=import-outside-toplevel</span>
-<a id="__codelineno-0-370" name="__codelineno-0-370"></a>                <span class="n">AutoTokenizer</span><span class="p">,</span>
-<a id="__codelineno-0-371" name="__codelineno-0-371"></a>            <span class="p">)</span>
-<a id="__codelineno-0-372" name="__codelineno-0-372"></a>
-<a id="__codelineno-0-373" name="__codelineno-0-373"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
-<a id="__codelineno-0-374" name="__codelineno-0-374"></a>        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pylint: disable=broad-except</span>
-<a id="__codelineno-0-375" name="__codelineno-0-375"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-0-376" name="__codelineno-0-376"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer_loaded</span> <span class="o">=</span> <span class="kc">True</span>
-<a id="__codelineno-0-377" name="__codelineno-0-377"></a>
-<a id="__codelineno-0-378" name="__codelineno-0-378"></a>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-379" name="__codelineno-0-379"></a>        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<a id="__codelineno-0-380" name="__codelineno-0-380"></a>            <span class="sa">f</span><span class="s2">&quot;Cannot load tokenizer for &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">&#39;. &quot;</span>
-<a id="__codelineno-0-381" name="__codelineno-0-381"></a>            <span class="sa">f</span><span class="s2">&quot;Using character-based approximation &quot;</span>
-<a id="__codelineno-0-382" name="__codelineno-0-382"></a>            <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">_CHARS_PER_TOKEN</span><span class="si">}</span><span class="s2"> chars ≈ 1 token). &quot;</span>
-<a id="__codelineno-0-383" name="__codelineno-0-383"></a>            <span class="s2">&quot;Install wordbase[huggingface] for accurate token counting.&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-384" name="__codelineno-0-384"></a>            <span class="ne">UserWarning</span><span class="p">,</span>
-<a id="__codelineno-0-385" name="__codelineno-0-385"></a>            <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-<a id="__codelineno-0-386" name="__codelineno-0-386"></a>        <span class="p">)</span>
-<a id="__codelineno-0-387" name="__codelineno-0-387"></a>        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">//</span> <span class="n">_CHARS_PER_TOKEN</span><span class="p">)</span>
-<a id="__codelineno-0-388" name="__codelineno-0-388"></a>
-<a id="__codelineno-0-389" name="__codelineno-0-389"></a>    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+<a id="__codelineno-0-363" name="__codelineno-0-363"></a><span class="sd">    Attempts to load the model&#39;s tokenizer via ``transformers`` on the</span>
+<a id="__codelineno-0-364" name="__codelineno-0-364"></a><span class="sd">    first call. Falls back to a character-based approximation</span>
+<a id="__codelineno-0-365" name="__codelineno-0-365"></a><span class="sd">    (1 token ≈ 4 characters) when ``transformers`` is unavailable or the</span>
+<a id="__codelineno-0-366" name="__codelineno-0-366"></a><span class="sd">    tokenizer cannot be loaded, emitting a UserWarning in that case.</span>
+<a id="__codelineno-0-367" name="__codelineno-0-367"></a>
+<a id="__codelineno-0-368" name="__codelineno-0-368"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-369" name="__codelineno-0-369"></a><span class="sd">        text: Text to tokenize and count.</span>
+<a id="__codelineno-0-370" name="__codelineno-0-370"></a>
+<a id="__codelineno-0-371" name="__codelineno-0-371"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-372" name="__codelineno-0-372"></a><span class="sd">        Token count, exact when a tokenizer is available or approximate</span>
+<a id="__codelineno-0-373" name="__codelineno-0-373"></a><span class="sd">        otherwise (minimum 1).</span>
+<a id="__codelineno-0-374" name="__codelineno-0-374"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-375" name="__codelineno-0-375"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer_loaded</span><span class="p">:</span>
+<a id="__codelineno-0-376" name="__codelineno-0-376"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-377" name="__codelineno-0-377"></a>            <span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>  <span class="c1"># pylint: disable=import-outside-toplevel</span>
+<a id="__codelineno-0-378" name="__codelineno-0-378"></a>                <span class="n">AutoTokenizer</span><span class="p">,</span>
+<a id="__codelineno-0-379" name="__codelineno-0-379"></a>            <span class="p">)</span>
+<a id="__codelineno-0-380" name="__codelineno-0-380"></a>
+<a id="__codelineno-0-381" name="__codelineno-0-381"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+<a id="__codelineno-0-382" name="__codelineno-0-382"></a>        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pylint: disable=broad-except</span>
+<a id="__codelineno-0-383" name="__codelineno-0-383"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-0-384" name="__codelineno-0-384"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer_loaded</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-0-385" name="__codelineno-0-385"></a>
+<a id="__codelineno-0-386" name="__codelineno-0-386"></a>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-387" name="__codelineno-0-387"></a>        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<a id="__codelineno-0-388" name="__codelineno-0-388"></a>            <span class="sa">f</span><span class="s2">&quot;Cannot load tokenizer for &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">&#39;. &quot;</span>
+<a id="__codelineno-0-389" name="__codelineno-0-389"></a>            <span class="sa">f</span><span class="s2">&quot;Using character-based approximation &quot;</span>
+<a id="__codelineno-0-390" name="__codelineno-0-390"></a>            <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">_CHARS_PER_TOKEN</span><span class="si">}</span><span class="s2"> chars ≈ 1 token). &quot;</span>
+<a id="__codelineno-0-391" name="__codelineno-0-391"></a>            <span class="s2">&quot;Install wordbase[huggingface] for accurate token counting.&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-392" name="__codelineno-0-392"></a>            <span class="ne">UserWarning</span><span class="p">,</span>
+<a id="__codelineno-0-393" name="__codelineno-0-393"></a>            <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-0-394" name="__codelineno-0-394"></a>        <span class="p">)</span>
+<a id="__codelineno-0-395" name="__codelineno-0-395"></a>        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">//</span> <span class="n">_CHARS_PER_TOKEN</span><span class="p">)</span>
+<a id="__codelineno-0-396" name="__codelineno-0-396"></a>
+<a id="__codelineno-0-397" name="__codelineno-0-397"></a>    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
