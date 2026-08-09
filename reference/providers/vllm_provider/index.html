@@ -1694,7 +1694,7 @@ provider = VLLMProvider(
 )
 messages = [Message(role=&quot;user&quot;, content=&quot;Hello, how are you?&quot;)]
 completions = provider.generate(
-    messages, temperature=0.7, max_tokens=100, return_token_probs=True
+    messages, seed=None, temperature=0.7, max_tokens=100, return_token_probs=True
 )
 </code></pre></div>
 
@@ -1974,7 +1974,7 @@ Common options include:
 
   
       dataclass
-   (wordbase.types.Message)" href="../../types/#wordbase.types.Message">Message</a></span><span class="p">],</span> <span class="n">system_prompt</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_tokens</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="n"><span title="float">float</span></span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">top_p</span><span class="p">:</span> <span class="n"><span title="float">float</span></span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">top_k</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">num_beams</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stop_sequences</span><span class="p">:</span> <span class="n"><span title="list">list</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">use_cache</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">return_token_probs</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">logprob_aggregation</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">=</span> <span class="s1">&#39;arithmetic_mean&#39;</span><span class="p">,</span> <span class="n">logprob_alpha</span><span class="p">:</span> <span class="n"><span title="float">float</span></span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">tools</span><span class="p">:</span> <span class="n"><span title="list">list</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="            Tool
+   (wordbase.types.Message)" href="../../types/#wordbase.types.Message">Message</a></span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">system_prompt</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_tokens</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="n"><span title="float">float</span></span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">top_p</span><span class="p">:</span> <span class="n"><span title="float">float</span></span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">top_k</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">num_beams</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stop_sequences</span><span class="p">:</span> <span class="n"><span title="list">list</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">use_cache</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">return_token_probs</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">logprob_aggregation</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">=</span> <span class="s1">&#39;arithmetic_mean&#39;</span><span class="p">,</span> <span class="n">logprob_alpha</span><span class="p">:</span> <span class="n"><span title="float">float</span></span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">tools</span><span class="p">:</span> <span class="n"><span title="list">list</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="            Tool
 
 
   
@@ -2014,6 +2014,25 @@ Common options include:
             <td>
               <div class="doc-md-description">
                 <p>Conversation history as Message objects.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>seed</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Random seed for reproducible sampling, or None to sample
+without a fixed seed. Required (pass None explicitly to opt
+out). Forwarded to vLLM's SamplingParams.seed, which is a
+hard determinism guarantee (not "best effort").</p>
               </div>
             </td>
             <td>
@@ -2356,14 +2375,7 @@ does not accept a tools= argument.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/wordbase/providers/vllm_provider.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-480">480</a></span>
-<span class="normal"><a href="#__codelineno-0-481">481</a></span>
-<span class="normal"><a href="#__codelineno-0-482">482</a></span>
-<span class="normal"><a href="#__codelineno-0-483">483</a></span>
-<span class="normal"><a href="#__codelineno-0-484">484</a></span>
-<span class="normal"><a href="#__codelineno-0-485">485</a></span>
-<span class="normal"><a href="#__codelineno-0-486">486</a></span>
-<span class="normal"><a href="#__codelineno-0-487">487</a></span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-487">487</a></span>
 <span class="normal"><a href="#__codelineno-0-488">488</a></span>
 <span class="normal"><a href="#__codelineno-0-489">489</a></span>
 <span class="normal"><a href="#__codelineno-0-490">490</a></span>
@@ -2482,133 +2494,156 @@ does not accept a tools= argument.</p>
 <span class="normal"><a href="#__codelineno-0-603">603</a></span>
 <span class="normal"><a href="#__codelineno-0-604">604</a></span>
 <span class="normal"><a href="#__codelineno-0-605">605</a></span>
-<span class="normal"><a href="#__codelineno-0-606">606</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-480" name="__codelineno-0-480"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span>  <span class="c1"># type: ignore[override]  # pylint: disable=arguments-renamed</span>
-<a id="__codelineno-0-481" name="__codelineno-0-481"></a>    <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-0-482" name="__codelineno-0-482"></a>    <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Message</span><span class="p">],</span>
-<a id="__codelineno-0-483" name="__codelineno-0-483"></a>    <span class="n">system_prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-484" name="__codelineno-0-484"></a>    <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-<a id="__codelineno-0-485" name="__codelineno-0-485"></a>    <span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span>
-<a id="__codelineno-0-486" name="__codelineno-0-486"></a>    <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-<a id="__codelineno-0-487" name="__codelineno-0-487"></a>    <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-<a id="__codelineno-0-488" name="__codelineno-0-488"></a>    <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-489" name="__codelineno-0-489"></a>    <span class="n">num_beams</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-<a id="__codelineno-0-490" name="__codelineno-0-490"></a>    <span class="n">stop_sequences</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-491" name="__codelineno-0-491"></a>    <span class="n">stream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<a id="__codelineno-0-492" name="__codelineno-0-492"></a>    <span class="n">use_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-<a id="__codelineno-0-493" name="__codelineno-0-493"></a>    <span class="n">return_token_probs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<a id="__codelineno-0-494" name="__codelineno-0-494"></a>    <span class="n">logprob_aggregation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;arithmetic_mean&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-495" name="__codelineno-0-495"></a>    <span class="n">logprob_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-<a id="__codelineno-0-496" name="__codelineno-0-496"></a>    <span class="n">tools</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Tool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-497" name="__codelineno-0-497"></a>    <span class="n">tool_choice</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-498" name="__codelineno-0-498"></a>    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-<a id="__codelineno-0-499" name="__codelineno-0-499"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
-<a id="__codelineno-0-500" name="__codelineno-0-500"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate completions given conversation history.</span>
-<a id="__codelineno-0-501" name="__codelineno-0-501"></a>
-<a id="__codelineno-0-502" name="__codelineno-0-502"></a><span class="sd">    Streaming (stream=True) is not yet implemented and is ignored.</span>
-<a id="__codelineno-0-503" name="__codelineno-0-503"></a>
-<a id="__codelineno-0-504" name="__codelineno-0-504"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-505" name="__codelineno-0-505"></a><span class="sd">        messages: Conversation history as Message objects.</span>
-<a id="__codelineno-0-506" name="__codelineno-0-506"></a><span class="sd">        system_prompt: System prompt prepended to the conversation.</span>
-<a id="__codelineno-0-507" name="__codelineno-0-507"></a><span class="sd">        n: Number of completions to generate.</span>
-<a id="__codelineno-0-508" name="__codelineno-0-508"></a><span class="sd">        max_tokens: Maximum tokens per completion.</span>
-<a id="__codelineno-0-509" name="__codelineno-0-509"></a><span class="sd">        temperature: Sampling temperature (0.0 = greedy decoding).</span>
-<a id="__codelineno-0-510" name="__codelineno-0-510"></a><span class="sd">        top_p: Nucleus sampling cumulative probability threshold.</span>
-<a id="__codelineno-0-511" name="__codelineno-0-511"></a><span class="sd">        top_k: Top-k token filtering (None disables it).</span>
-<a id="__codelineno-0-512" name="__codelineno-0-512"></a><span class="sd">        num_beams: Must be 1; vLLM does not support beam search.</span>
-<a id="__codelineno-0-513" name="__codelineno-0-513"></a><span class="sd">        stop_sequences: Strings that stop generation when encountered.</span>
-<a id="__codelineno-0-514" name="__codelineno-0-514"></a><span class="sd">        stream: Ignored; streaming is not yet implemented.</span>
-<a id="__codelineno-0-515" name="__codelineno-0-515"></a><span class="sd">        use_cache: Whether to use the configured cache.</span>
-<a id="__codelineno-0-516" name="__codelineno-0-516"></a><span class="sd">        return_token_probs: Whether to return per-token log probabilities.</span>
-<a id="__codelineno-0-517" name="__codelineno-0-517"></a><span class="sd">        logprob_aggregation: How to aggregate token logprobs into a single</span>
-<a id="__codelineno-0-518" name="__codelineno-0-518"></a><span class="sd">            text logprob. Options: &quot;sum&quot;, &quot;arithmetic_mean&quot;,</span>
-<a id="__codelineno-0-519" name="__codelineno-0-519"></a><span class="sd">            &quot;scaled_arithmetic_mean&quot;.</span>
-<a id="__codelineno-0-520" name="__codelineno-0-520"></a><span class="sd">        logprob_alpha: Alpha for &quot;scaled_arithmetic_mean&quot;.</span>
-<a id="__codelineno-0-521" name="__codelineno-0-521"></a><span class="sd">            Formula: sum(logprobs) / (n_tokens ** alpha).</span>
-<a id="__codelineno-0-522" name="__codelineno-0-522"></a><span class="sd">        tools: Tool definitions the model may call. The tokenizer&#39;s</span>
-<a id="__codelineno-0-523" name="__codelineno-0-523"></a><span class="sd">            chat template must support a tools= argument; raises</span>
-<a id="__codelineno-0-524" name="__codelineno-0-524"></a><span class="sd">            InvalidRequestError otherwise. Output-side parsing only</span>
-<a id="__codelineno-0-525" name="__codelineno-0-525"></a><span class="sd">            recognizes the Qwen/Hermes-style &lt;tool_call&gt;{...}&lt;/tool_call&gt;</span>
-<a id="__codelineno-0-526" name="__codelineno-0-526"></a><span class="sd">            convention -- see wordbase.utils.parse_tool_calls_from_text.</span>
-<a id="__codelineno-0-527" name="__codelineno-0-527"></a><span class="sd">            vLLM&#39;s own structured tool-call parsing</span>
-<a id="__codelineno-0-528" name="__codelineno-0-528"></a><span class="sd">            (--enable-auto-tool-choice) is a feature of its</span>
-<a id="__codelineno-0-529" name="__codelineno-0-529"></a><span class="sd">            OpenAI-compatible HTTP server only; the offline LLM engine</span>
-<a id="__codelineno-0-530" name="__codelineno-0-530"></a><span class="sd">            this provider wraps has no equivalent, hence this fallback.</span>
-<a id="__codelineno-0-531" name="__codelineno-0-531"></a><span class="sd">        tool_choice: Accepted for interface compatibility but has no</span>
-<a id="__codelineno-0-532" name="__codelineno-0-532"></a><span class="sd">            effect -- there is no template-level enforcement of tool</span>
-<a id="__codelineno-0-533" name="__codelineno-0-533"></a><span class="sd">            use for local models.</span>
-<a id="__codelineno-0-534" name="__codelineno-0-534"></a><span class="sd">        **kwargs: Ignored additional parameters for interface compatibility.</span>
-<a id="__codelineno-0-535" name="__codelineno-0-535"></a>
-<a id="__codelineno-0-536" name="__codelineno-0-536"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-537" name="__codelineno-0-537"></a><span class="sd">        List of n completion dictionaries, each with:</span>
-<a id="__codelineno-0-538" name="__codelineno-0-538"></a><span class="sd">            - text: Generated text string.</span>
-<a id="__codelineno-0-539" name="__codelineno-0-539"></a><span class="sd">            - tokens: Token dicts with logprobs (if return_token_probs).</span>
-<a id="__codelineno-0-540" name="__codelineno-0-540"></a><span class="sd">            - finish_reason: &quot;stop&quot;, &quot;length&quot;, or &quot;tool_calls&quot;.</span>
-<a id="__codelineno-0-541" name="__codelineno-0-541"></a><span class="sd">            - metadata: Model name and output_tokens count.</span>
-<a id="__codelineno-0-542" name="__codelineno-0-542"></a><span class="sd">            - logprob: Aggregated log probability (if return_token_probs).</span>
-<a id="__codelineno-0-543" name="__codelineno-0-543"></a><span class="sd">            - tool_calls: List of ToolCall objects, present only when a</span>
-<a id="__codelineno-0-544" name="__codelineno-0-544"></a><span class="sd">              &lt;tool_call&gt; block was found in the output.</span>
-<a id="__codelineno-0-545" name="__codelineno-0-545"></a>
-<a id="__codelineno-0-546" name="__codelineno-0-546"></a><span class="sd">    Raises:</span>
-<a id="__codelineno-0-547" name="__codelineno-0-547"></a><span class="sd">        InvalidRequestError: If num_beams &gt; 1 (vLLM does not support beam</span>
-<a id="__codelineno-0-548" name="__codelineno-0-548"></a><span class="sd">            search); if tools is not None and the tokenizer has no chat</span>
-<a id="__codelineno-0-549" name="__codelineno-0-549"></a><span class="sd">            template; or if tools is not None and its chat template</span>
-<a id="__codelineno-0-550" name="__codelineno-0-550"></a><span class="sd">            does not accept a tools= argument.</span>
-<a id="__codelineno-0-551" name="__codelineno-0-551"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-552" name="__codelineno-0-552"></a>    <span class="k">if</span> <span class="n">num_beams</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<a id="__codelineno-0-553" name="__codelineno-0-553"></a>        <span class="k">raise</span> <span class="n">InvalidRequestError</span><span class="p">(</span>
-<a id="__codelineno-0-554" name="__codelineno-0-554"></a>            <span class="s2">&quot;vLLM does not support beam search. Use num_beams=1 &quot;</span>
-<a id="__codelineno-0-555" name="__codelineno-0-555"></a>            <span class="s2">&quot;or switch to HuggingFaceProvider for beam search.&quot;</span>
-<a id="__codelineno-0-556" name="__codelineno-0-556"></a>        <span class="p">)</span>
-<a id="__codelineno-0-557" name="__codelineno-0-557"></a>    <span class="n">cache_key</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-0-558" name="__codelineno-0-558"></a>    <span class="k">if</span> <span class="n">use_cache</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span>
-<a id="__codelineno-0-559" name="__codelineno-0-559"></a>        <span class="n">cache_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">make_key</span><span class="p">(</span>
-<a id="__codelineno-0-560" name="__codelineno-0-560"></a>            <span class="n">messages</span><span class="p">,</span>
-<a id="__codelineno-0-561" name="__codelineno-0-561"></a>            <span class="n">system_prompt</span><span class="p">,</span>
-<a id="__codelineno-0-562" name="__codelineno-0-562"></a>            <span class="o">**</span><span class="n">_cache_key_params</span><span class="p">(</span>
-<a id="__codelineno-0-563" name="__codelineno-0-563"></a>                <span class="p">{</span>
-<a id="__codelineno-0-564" name="__codelineno-0-564"></a>                    <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="n">n</span><span class="p">,</span>
-<a id="__codelineno-0-565" name="__codelineno-0-565"></a>                    <span class="s2">&quot;max_tokens&quot;</span><span class="p">:</span> <span class="n">max_tokens</span><span class="p">,</span>
-<a id="__codelineno-0-566" name="__codelineno-0-566"></a>                    <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span>
-<a id="__codelineno-0-567" name="__codelineno-0-567"></a>                    <span class="s2">&quot;top_p&quot;</span><span class="p">:</span> <span class="n">top_p</span><span class="p">,</span>
-<a id="__codelineno-0-568" name="__codelineno-0-568"></a>                    <span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="n">top_k</span><span class="p">,</span>
-<a id="__codelineno-0-569" name="__codelineno-0-569"></a>                    <span class="s2">&quot;stop_sequences&quot;</span><span class="p">:</span> <span class="n">stop_sequences</span><span class="p">,</span>
-<a id="__codelineno-0-570" name="__codelineno-0-570"></a>                    <span class="s2">&quot;return_token_probs&quot;</span><span class="p">:</span> <span class="n">return_token_probs</span><span class="p">,</span>
-<a id="__codelineno-0-571" name="__codelineno-0-571"></a>                    <span class="s2">&quot;tools&quot;</span><span class="p">:</span> <span class="n">tools</span><span class="p">,</span>
-<a id="__codelineno-0-572" name="__codelineno-0-572"></a>                    <span class="s2">&quot;tool_choice&quot;</span><span class="p">:</span> <span class="n">tool_choice</span><span class="p">,</span>
-<a id="__codelineno-0-573" name="__codelineno-0-573"></a>                    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<a id="__codelineno-0-574" name="__codelineno-0-574"></a>                <span class="p">}</span>
-<a id="__codelineno-0-575" name="__codelineno-0-575"></a>            <span class="p">),</span>
-<a id="__codelineno-0-576" name="__codelineno-0-576"></a>        <span class="p">)</span>
-<a id="__codelineno-0-577" name="__codelineno-0-577"></a>        <span class="n">cached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span>
-<a id="__codelineno-0-578" name="__codelineno-0-578"></a>        <span class="k">if</span> <span class="n">cached</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-579" name="__codelineno-0-579"></a>            <span class="k">return</span> <span class="n">cached</span>
-<a id="__codelineno-0-580" name="__codelineno-0-580"></a>
-<a id="__codelineno-0-581" name="__codelineno-0-581"></a>    <span class="n">prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_messages</span><span class="p">(</span>
-<a id="__codelineno-0-582" name="__codelineno-0-582"></a>        <span class="n">messages</span><span class="p">,</span> <span class="n">system_prompt</span><span class="o">=</span><span class="n">system_prompt</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">tools</span>
-<a id="__codelineno-0-583" name="__codelineno-0-583"></a>    <span class="p">)</span>
-<a id="__codelineno-0-584" name="__codelineno-0-584"></a>    <span class="n">sampling_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_sampling_params</span><span class="p">(</span>
-<a id="__codelineno-0-585" name="__codelineno-0-585"></a>        <span class="n">n</span><span class="p">,</span>
-<a id="__codelineno-0-586" name="__codelineno-0-586"></a>        <span class="n">max_tokens</span><span class="p">,</span>
-<a id="__codelineno-0-587" name="__codelineno-0-587"></a>        <span class="n">temperature</span><span class="p">,</span>
-<a id="__codelineno-0-588" name="__codelineno-0-588"></a>        <span class="n">top_p</span><span class="p">,</span>
-<a id="__codelineno-0-589" name="__codelineno-0-589"></a>        <span class="n">top_k</span><span class="p">,</span>
-<a id="__codelineno-0-590" name="__codelineno-0-590"></a>        <span class="n">stop_sequences</span><span class="p">,</span>
-<a id="__codelineno-0-591" name="__codelineno-0-591"></a>        <span class="n">return_token_probs</span><span class="p">,</span>
-<a id="__codelineno-0-592" name="__codelineno-0-592"></a>    <span class="p">)</span>
-<a id="__codelineno-0-593" name="__codelineno-0-593"></a>    <span class="n">request_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">generate</span><span class="p">([</span><span class="n">prompt</span><span class="p">],</span> <span class="n">sampling_params</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-606">606</a></span>
+<span class="normal"><a href="#__codelineno-0-607">607</a></span>
+<span class="normal"><a href="#__codelineno-0-608">608</a></span>
+<span class="normal"><a href="#__codelineno-0-609">609</a></span>
+<span class="normal"><a href="#__codelineno-0-610">610</a></span>
+<span class="normal"><a href="#__codelineno-0-611">611</a></span>
+<span class="normal"><a href="#__codelineno-0-612">612</a></span>
+<span class="normal"><a href="#__codelineno-0-613">613</a></span>
+<span class="normal"><a href="#__codelineno-0-614">614</a></span>
+<span class="normal"><a href="#__codelineno-0-615">615</a></span>
+<span class="normal"><a href="#__codelineno-0-616">616</a></span>
+<span class="normal"><a href="#__codelineno-0-617">617</a></span>
+<span class="normal"><a href="#__codelineno-0-618">618</a></span>
+<span class="normal"><a href="#__codelineno-0-619">619</a></span>
+<span class="normal"><a href="#__codelineno-0-620">620</a></span>
+<span class="normal"><a href="#__codelineno-0-621">621</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-487" name="__codelineno-0-487"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span>  <span class="c1"># type: ignore[override]  # pylint: disable=arguments-renamed</span>
+<a id="__codelineno-0-488" name="__codelineno-0-488"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-489" name="__codelineno-0-489"></a>    <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Message</span><span class="p">],</span>
+<a id="__codelineno-0-490" name="__codelineno-0-490"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-491" name="__codelineno-0-491"></a>    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-492" name="__codelineno-0-492"></a>    <span class="n">system_prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-493" name="__codelineno-0-493"></a>    <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-0-494" name="__codelineno-0-494"></a>    <span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span>
+<a id="__codelineno-0-495" name="__codelineno-0-495"></a>    <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+<a id="__codelineno-0-496" name="__codelineno-0-496"></a>    <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+<a id="__codelineno-0-497" name="__codelineno-0-497"></a>    <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-498" name="__codelineno-0-498"></a>    <span class="n">num_beams</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-0-499" name="__codelineno-0-499"></a>    <span class="n">stop_sequences</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-500" name="__codelineno-0-500"></a>    <span class="n">stream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-0-501" name="__codelineno-0-501"></a>    <span class="n">use_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-0-502" name="__codelineno-0-502"></a>    <span class="n">return_token_probs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-0-503" name="__codelineno-0-503"></a>    <span class="n">logprob_aggregation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;arithmetic_mean&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-504" name="__codelineno-0-504"></a>    <span class="n">logprob_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+<a id="__codelineno-0-505" name="__codelineno-0-505"></a>    <span class="n">tools</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Tool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-506" name="__codelineno-0-506"></a>    <span class="n">tool_choice</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-507" name="__codelineno-0-507"></a>    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-0-508" name="__codelineno-0-508"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<a id="__codelineno-0-509" name="__codelineno-0-509"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate completions given conversation history.</span>
+<a id="__codelineno-0-510" name="__codelineno-0-510"></a>
+<a id="__codelineno-0-511" name="__codelineno-0-511"></a><span class="sd">    Streaming (stream=True) is not yet implemented and is ignored.</span>
+<a id="__codelineno-0-512" name="__codelineno-0-512"></a>
+<a id="__codelineno-0-513" name="__codelineno-0-513"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-514" name="__codelineno-0-514"></a><span class="sd">        messages: Conversation history as Message objects.</span>
+<a id="__codelineno-0-515" name="__codelineno-0-515"></a><span class="sd">        seed: Random seed for reproducible sampling, or None to sample</span>
+<a id="__codelineno-0-516" name="__codelineno-0-516"></a><span class="sd">            without a fixed seed. Required (pass None explicitly to opt</span>
+<a id="__codelineno-0-517" name="__codelineno-0-517"></a><span class="sd">            out). Forwarded to vLLM&#39;s SamplingParams.seed, which is a</span>
+<a id="__codelineno-0-518" name="__codelineno-0-518"></a><span class="sd">            hard determinism guarantee (not &quot;best effort&quot;).</span>
+<a id="__codelineno-0-519" name="__codelineno-0-519"></a><span class="sd">        system_prompt: System prompt prepended to the conversation.</span>
+<a id="__codelineno-0-520" name="__codelineno-0-520"></a><span class="sd">        n: Number of completions to generate.</span>
+<a id="__codelineno-0-521" name="__codelineno-0-521"></a><span class="sd">        max_tokens: Maximum tokens per completion.</span>
+<a id="__codelineno-0-522" name="__codelineno-0-522"></a><span class="sd">        temperature: Sampling temperature (0.0 = greedy decoding).</span>
+<a id="__codelineno-0-523" name="__codelineno-0-523"></a><span class="sd">        top_p: Nucleus sampling cumulative probability threshold.</span>
+<a id="__codelineno-0-524" name="__codelineno-0-524"></a><span class="sd">        top_k: Top-k token filtering (None disables it).</span>
+<a id="__codelineno-0-525" name="__codelineno-0-525"></a><span class="sd">        num_beams: Must be 1; vLLM does not support beam search.</span>
+<a id="__codelineno-0-526" name="__codelineno-0-526"></a><span class="sd">        stop_sequences: Strings that stop generation when encountered.</span>
+<a id="__codelineno-0-527" name="__codelineno-0-527"></a><span class="sd">        stream: Ignored; streaming is not yet implemented.</span>
+<a id="__codelineno-0-528" name="__codelineno-0-528"></a><span class="sd">        use_cache: Whether to use the configured cache.</span>
+<a id="__codelineno-0-529" name="__codelineno-0-529"></a><span class="sd">        return_token_probs: Whether to return per-token log probabilities.</span>
+<a id="__codelineno-0-530" name="__codelineno-0-530"></a><span class="sd">        logprob_aggregation: How to aggregate token logprobs into a single</span>
+<a id="__codelineno-0-531" name="__codelineno-0-531"></a><span class="sd">            text logprob. Options: &quot;sum&quot;, &quot;arithmetic_mean&quot;,</span>
+<a id="__codelineno-0-532" name="__codelineno-0-532"></a><span class="sd">            &quot;scaled_arithmetic_mean&quot;.</span>
+<a id="__codelineno-0-533" name="__codelineno-0-533"></a><span class="sd">        logprob_alpha: Alpha for &quot;scaled_arithmetic_mean&quot;.</span>
+<a id="__codelineno-0-534" name="__codelineno-0-534"></a><span class="sd">            Formula: sum(logprobs) / (n_tokens ** alpha).</span>
+<a id="__codelineno-0-535" name="__codelineno-0-535"></a><span class="sd">        tools: Tool definitions the model may call. The tokenizer&#39;s</span>
+<a id="__codelineno-0-536" name="__codelineno-0-536"></a><span class="sd">            chat template must support a tools= argument; raises</span>
+<a id="__codelineno-0-537" name="__codelineno-0-537"></a><span class="sd">            InvalidRequestError otherwise. Output-side parsing only</span>
+<a id="__codelineno-0-538" name="__codelineno-0-538"></a><span class="sd">            recognizes the Qwen/Hermes-style &lt;tool_call&gt;{...}&lt;/tool_call&gt;</span>
+<a id="__codelineno-0-539" name="__codelineno-0-539"></a><span class="sd">            convention -- see wordbase.utils.parse_tool_calls_from_text.</span>
+<a id="__codelineno-0-540" name="__codelineno-0-540"></a><span class="sd">            vLLM&#39;s own structured tool-call parsing</span>
+<a id="__codelineno-0-541" name="__codelineno-0-541"></a><span class="sd">            (--enable-auto-tool-choice) is a feature of its</span>
+<a id="__codelineno-0-542" name="__codelineno-0-542"></a><span class="sd">            OpenAI-compatible HTTP server only; the offline LLM engine</span>
+<a id="__codelineno-0-543" name="__codelineno-0-543"></a><span class="sd">            this provider wraps has no equivalent, hence this fallback.</span>
+<a id="__codelineno-0-544" name="__codelineno-0-544"></a><span class="sd">        tool_choice: Accepted for interface compatibility but has no</span>
+<a id="__codelineno-0-545" name="__codelineno-0-545"></a><span class="sd">            effect -- there is no template-level enforcement of tool</span>
+<a id="__codelineno-0-546" name="__codelineno-0-546"></a><span class="sd">            use for local models.</span>
+<a id="__codelineno-0-547" name="__codelineno-0-547"></a><span class="sd">        **kwargs: Ignored additional parameters for interface compatibility.</span>
+<a id="__codelineno-0-548" name="__codelineno-0-548"></a>
+<a id="__codelineno-0-549" name="__codelineno-0-549"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-550" name="__codelineno-0-550"></a><span class="sd">        List of n completion dictionaries, each with:</span>
+<a id="__codelineno-0-551" name="__codelineno-0-551"></a><span class="sd">            - text: Generated text string.</span>
+<a id="__codelineno-0-552" name="__codelineno-0-552"></a><span class="sd">            - tokens: Token dicts with logprobs (if return_token_probs).</span>
+<a id="__codelineno-0-553" name="__codelineno-0-553"></a><span class="sd">            - finish_reason: &quot;stop&quot;, &quot;length&quot;, or &quot;tool_calls&quot;.</span>
+<a id="__codelineno-0-554" name="__codelineno-0-554"></a><span class="sd">            - metadata: Model name and output_tokens count.</span>
+<a id="__codelineno-0-555" name="__codelineno-0-555"></a><span class="sd">            - logprob: Aggregated log probability (if return_token_probs).</span>
+<a id="__codelineno-0-556" name="__codelineno-0-556"></a><span class="sd">            - tool_calls: List of ToolCall objects, present only when a</span>
+<a id="__codelineno-0-557" name="__codelineno-0-557"></a><span class="sd">              &lt;tool_call&gt; block was found in the output.</span>
+<a id="__codelineno-0-558" name="__codelineno-0-558"></a>
+<a id="__codelineno-0-559" name="__codelineno-0-559"></a><span class="sd">    Raises:</span>
+<a id="__codelineno-0-560" name="__codelineno-0-560"></a><span class="sd">        InvalidRequestError: If num_beams &gt; 1 (vLLM does not support beam</span>
+<a id="__codelineno-0-561" name="__codelineno-0-561"></a><span class="sd">            search); if tools is not None and the tokenizer has no chat</span>
+<a id="__codelineno-0-562" name="__codelineno-0-562"></a><span class="sd">            template; or if tools is not None and its chat template</span>
+<a id="__codelineno-0-563" name="__codelineno-0-563"></a><span class="sd">            does not accept a tools= argument.</span>
+<a id="__codelineno-0-564" name="__codelineno-0-564"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-565" name="__codelineno-0-565"></a>    <span class="k">if</span> <span class="n">num_beams</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-0-566" name="__codelineno-0-566"></a>        <span class="k">raise</span> <span class="n">InvalidRequestError</span><span class="p">(</span>
+<a id="__codelineno-0-567" name="__codelineno-0-567"></a>            <span class="s2">&quot;vLLM does not support beam search. Use num_beams=1 &quot;</span>
+<a id="__codelineno-0-568" name="__codelineno-0-568"></a>            <span class="s2">&quot;or switch to HuggingFaceProvider for beam search.&quot;</span>
+<a id="__codelineno-0-569" name="__codelineno-0-569"></a>        <span class="p">)</span>
+<a id="__codelineno-0-570" name="__codelineno-0-570"></a>    <span class="n">cache_key</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-0-571" name="__codelineno-0-571"></a>    <span class="k">if</span> <span class="n">use_cache</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span>
+<a id="__codelineno-0-572" name="__codelineno-0-572"></a>        <span class="n">cache_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">make_key</span><span class="p">(</span>
+<a id="__codelineno-0-573" name="__codelineno-0-573"></a>            <span class="n">messages</span><span class="p">,</span>
+<a id="__codelineno-0-574" name="__codelineno-0-574"></a>            <span class="n">system_prompt</span><span class="p">,</span>
+<a id="__codelineno-0-575" name="__codelineno-0-575"></a>            <span class="o">**</span><span class="n">_cache_key_params</span><span class="p">(</span>
+<a id="__codelineno-0-576" name="__codelineno-0-576"></a>                <span class="p">{</span>
+<a id="__codelineno-0-577" name="__codelineno-0-577"></a>                    <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="n">n</span><span class="p">,</span>
+<a id="__codelineno-0-578" name="__codelineno-0-578"></a>                    <span class="s2">&quot;max_tokens&quot;</span><span class="p">:</span> <span class="n">max_tokens</span><span class="p">,</span>
+<a id="__codelineno-0-579" name="__codelineno-0-579"></a>                    <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span>
+<a id="__codelineno-0-580" name="__codelineno-0-580"></a>                    <span class="s2">&quot;top_p&quot;</span><span class="p">:</span> <span class="n">top_p</span><span class="p">,</span>
+<a id="__codelineno-0-581" name="__codelineno-0-581"></a>                    <span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="n">top_k</span><span class="p">,</span>
+<a id="__codelineno-0-582" name="__codelineno-0-582"></a>                    <span class="s2">&quot;stop_sequences&quot;</span><span class="p">:</span> <span class="n">stop_sequences</span><span class="p">,</span>
+<a id="__codelineno-0-583" name="__codelineno-0-583"></a>                    <span class="s2">&quot;return_token_probs&quot;</span><span class="p">:</span> <span class="n">return_token_probs</span><span class="p">,</span>
+<a id="__codelineno-0-584" name="__codelineno-0-584"></a>                    <span class="s2">&quot;tools&quot;</span><span class="p">:</span> <span class="n">tools</span><span class="p">,</span>
+<a id="__codelineno-0-585" name="__codelineno-0-585"></a>                    <span class="s2">&quot;tool_choice&quot;</span><span class="p">:</span> <span class="n">tool_choice</span><span class="p">,</span>
+<a id="__codelineno-0-586" name="__codelineno-0-586"></a>                    <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+<a id="__codelineno-0-587" name="__codelineno-0-587"></a>                    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<a id="__codelineno-0-588" name="__codelineno-0-588"></a>                <span class="p">}</span>
+<a id="__codelineno-0-589" name="__codelineno-0-589"></a>            <span class="p">),</span>
+<a id="__codelineno-0-590" name="__codelineno-0-590"></a>        <span class="p">)</span>
+<a id="__codelineno-0-591" name="__codelineno-0-591"></a>        <span class="n">cached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span>
+<a id="__codelineno-0-592" name="__codelineno-0-592"></a>        <span class="k">if</span> <span class="n">cached</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-593" name="__codelineno-0-593"></a>            <span class="k">return</span> <span class="n">cached</span>
 <a id="__codelineno-0-594" name="__codelineno-0-594"></a>
-<a id="__codelineno-0-595" name="__codelineno-0-595"></a>    <span class="n">completions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_completions</span><span class="p">(</span>
-<a id="__codelineno-0-596" name="__codelineno-0-596"></a>        <span class="n">request_outputs</span><span class="p">,</span>
-<a id="__codelineno-0-597" name="__codelineno-0-597"></a>        <span class="n">return_token_probs</span><span class="p">,</span>
-<a id="__codelineno-0-598" name="__codelineno-0-598"></a>        <span class="n">logprob_aggregation</span><span class="p">,</span>
-<a id="__codelineno-0-599" name="__codelineno-0-599"></a>        <span class="n">logprob_alpha</span><span class="p">,</span>
-<a id="__codelineno-0-600" name="__codelineno-0-600"></a>        <span class="n">tools_requested</span><span class="o">=</span><span class="n">tools</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-601" name="__codelineno-0-601"></a>    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<a id="__codelineno-0-602" name="__codelineno-0-602"></a>
-<a id="__codelineno-0-603" name="__codelineno-0-603"></a>    <span class="k">if</span> <span class="n">use_cache</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span> <span class="ow">and</span> <span class="n">cache_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-604" name="__codelineno-0-604"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">completions</span><span class="p">)</span>
-<a id="__codelineno-0-605" name="__codelineno-0-605"></a>
-<a id="__codelineno-0-606" name="__codelineno-0-606"></a>    <span class="k">return</span> <span class="n">completions</span>
+<a id="__codelineno-0-595" name="__codelineno-0-595"></a>    <span class="n">prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_messages</span><span class="p">(</span>
+<a id="__codelineno-0-596" name="__codelineno-0-596"></a>        <span class="n">messages</span><span class="p">,</span> <span class="n">system_prompt</span><span class="o">=</span><span class="n">system_prompt</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">tools</span>
+<a id="__codelineno-0-597" name="__codelineno-0-597"></a>    <span class="p">)</span>
+<a id="__codelineno-0-598" name="__codelineno-0-598"></a>    <span class="n">sampling_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_sampling_params</span><span class="p">(</span>
+<a id="__codelineno-0-599" name="__codelineno-0-599"></a>        <span class="n">n</span><span class="p">,</span>
+<a id="__codelineno-0-600" name="__codelineno-0-600"></a>        <span class="n">max_tokens</span><span class="p">,</span>
+<a id="__codelineno-0-601" name="__codelineno-0-601"></a>        <span class="n">temperature</span><span class="p">,</span>
+<a id="__codelineno-0-602" name="__codelineno-0-602"></a>        <span class="n">top_p</span><span class="p">,</span>
+<a id="__codelineno-0-603" name="__codelineno-0-603"></a>        <span class="n">top_k</span><span class="p">,</span>
+<a id="__codelineno-0-604" name="__codelineno-0-604"></a>        <span class="n">stop_sequences</span><span class="p">,</span>
+<a id="__codelineno-0-605" name="__codelineno-0-605"></a>        <span class="n">return_token_probs</span><span class="p">,</span>
+<a id="__codelineno-0-606" name="__codelineno-0-606"></a>        <span class="n">seed</span><span class="p">,</span>
+<a id="__codelineno-0-607" name="__codelineno-0-607"></a>    <span class="p">)</span>
+<a id="__codelineno-0-608" name="__codelineno-0-608"></a>    <span class="n">request_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">generate</span><span class="p">([</span><span class="n">prompt</span><span class="p">],</span> <span class="n">sampling_params</span><span class="p">)</span>
+<a id="__codelineno-0-609" name="__codelineno-0-609"></a>
+<a id="__codelineno-0-610" name="__codelineno-0-610"></a>    <span class="n">completions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_completions</span><span class="p">(</span>
+<a id="__codelineno-0-611" name="__codelineno-0-611"></a>        <span class="n">request_outputs</span><span class="p">,</span>
+<a id="__codelineno-0-612" name="__codelineno-0-612"></a>        <span class="n">return_token_probs</span><span class="p">,</span>
+<a id="__codelineno-0-613" name="__codelineno-0-613"></a>        <span class="n">logprob_aggregation</span><span class="p">,</span>
+<a id="__codelineno-0-614" name="__codelineno-0-614"></a>        <span class="n">logprob_alpha</span><span class="p">,</span>
+<a id="__codelineno-0-615" name="__codelineno-0-615"></a>        <span class="n">tools_requested</span><span class="o">=</span><span class="n">tools</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-616" name="__codelineno-0-616"></a>    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-0-617" name="__codelineno-0-617"></a>
+<a id="__codelineno-0-618" name="__codelineno-0-618"></a>    <span class="k">if</span> <span class="n">use_cache</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span> <span class="ow">and</span> <span class="n">cache_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-619" name="__codelineno-0-619"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">completions</span><span class="p">)</span>
+<a id="__codelineno-0-620" name="__codelineno-0-620"></a>
+<a id="__codelineno-0-621" name="__codelineno-0-621"></a>    <span class="k">return</span> <span class="n">completions</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2623,7 +2658,7 @@ does not accept a tools= argument.</p>
 
 
 <a href="#wordbase.providers.vllm_provider.VLLMProvider.generate_batch" class="headerlink" title="Permanent link">&para;</a></h4>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">generate_batch</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n"><span title="list">list</span></span><span class="p">[</span><span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">]],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="list">list</span></span><span class="p">[</span><span class="n"><span title="list">list</span></span><span class="p">[</span><span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">]]]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">generate_batch</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n"><span title="list">list</span></span><span class="p">[</span><span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">]],</span> <span class="o">*</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="list">list</span></span><span class="p">[</span><span class="n"><span title="list">list</span></span><span class="p">[</span><span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">]]]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -2659,7 +2694,27 @@ scheduling and KV-cache management internally.</p>
 - system_prompt: Optional system prompt.
 - n, max_tokens, temperature, top_p, top_k,
   stop_sequences, return_token_probs, logprob_aggregation,
-  logprob_alpha: Per-request generation parameters.</p>
+  logprob_alpha, seed: Per-request generation parameters.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>seed</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Default seed applied to every request; a request dict's
+own "seed" key overrides this for that request. Required
+(pass None explicitly to opt out). Requests sharing a
+sub-batch group must share the same seed (it is part of the
+grouping key).</p>
               </div>
             </td>
             <td>
@@ -2712,22 +2767,7 @@ by per-request values with the same key).</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/wordbase/providers/vllm_provider.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-608">608</a></span>
-<span class="normal"><a href="#__codelineno-0-609">609</a></span>
-<span class="normal"><a href="#__codelineno-0-610">610</a></span>
-<span class="normal"><a href="#__codelineno-0-611">611</a></span>
-<span class="normal"><a href="#__codelineno-0-612">612</a></span>
-<span class="normal"><a href="#__codelineno-0-613">613</a></span>
-<span class="normal"><a href="#__codelineno-0-614">614</a></span>
-<span class="normal"><a href="#__codelineno-0-615">615</a></span>
-<span class="normal"><a href="#__codelineno-0-616">616</a></span>
-<span class="normal"><a href="#__codelineno-0-617">617</a></span>
-<span class="normal"><a href="#__codelineno-0-618">618</a></span>
-<span class="normal"><a href="#__codelineno-0-619">619</a></span>
-<span class="normal"><a href="#__codelineno-0-620">620</a></span>
-<span class="normal"><a href="#__codelineno-0-621">621</a></span>
-<span class="normal"><a href="#__codelineno-0-622">622</a></span>
-<span class="normal"><a href="#__codelineno-0-623">623</a></span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-623">623</a></span>
 <span class="normal"><a href="#__codelineno-0-624">624</a></span>
 <span class="normal"><a href="#__codelineno-0-625">625</a></span>
 <span class="normal"><a href="#__codelineno-0-626">626</a></span>
@@ -2849,144 +2889,175 @@ by per-request values with the same key).</p>
 <span class="normal"><a href="#__codelineno-0-742">742</a></span>
 <span class="normal"><a href="#__codelineno-0-743">743</a></span>
 <span class="normal"><a href="#__codelineno-0-744">744</a></span>
-<span class="normal"><a href="#__codelineno-0-745">745</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-608" name="__codelineno-0-608"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_batch</span><span class="p">(</span>
-<a id="__codelineno-0-609" name="__codelineno-0-609"></a>    <span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-<a id="__codelineno-0-610" name="__codelineno-0-610"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]:</span>
-<a id="__codelineno-0-611" name="__codelineno-0-611"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate completions for multiple requests using vLLM batching.</span>
-<a id="__codelineno-0-612" name="__codelineno-0-612"></a>
-<a id="__codelineno-0-613" name="__codelineno-0-613"></a><span class="sd">    Requests are grouped by their generation parameters and submitted</span>
-<a id="__codelineno-0-614" name="__codelineno-0-614"></a><span class="sd">    together to vLLM&#39;s continuous batching engine, which handles</span>
-<a id="__codelineno-0-615" name="__codelineno-0-615"></a><span class="sd">    scheduling and KV-cache management internally.</span>
-<a id="__codelineno-0-616" name="__codelineno-0-616"></a>
-<a id="__codelineno-0-617" name="__codelineno-0-617"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-618" name="__codelineno-0-618"></a><span class="sd">        batch: List of request dictionaries, each optionally containing:</span>
-<a id="__codelineno-0-619" name="__codelineno-0-619"></a><span class="sd">            - messages: Conversation history (required).</span>
-<a id="__codelineno-0-620" name="__codelineno-0-620"></a><span class="sd">            - system_prompt: Optional system prompt.</span>
-<a id="__codelineno-0-621" name="__codelineno-0-621"></a><span class="sd">            - n, max_tokens, temperature, top_p, top_k,</span>
-<a id="__codelineno-0-622" name="__codelineno-0-622"></a><span class="sd">              stop_sequences, return_token_probs, logprob_aggregation,</span>
-<a id="__codelineno-0-623" name="__codelineno-0-623"></a><span class="sd">              logprob_alpha: Per-request generation parameters.</span>
-<a id="__codelineno-0-624" name="__codelineno-0-624"></a><span class="sd">        **kwargs: Common parameters applied to all requests (overridden</span>
-<a id="__codelineno-0-625" name="__codelineno-0-625"></a><span class="sd">            by per-request values with the same key).</span>
-<a id="__codelineno-0-626" name="__codelineno-0-626"></a>
-<a id="__codelineno-0-627" name="__codelineno-0-627"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-628" name="__codelineno-0-628"></a><span class="sd">        List of completion lists, one inner list per batch request.</span>
-<a id="__codelineno-0-629" name="__codelineno-0-629"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-630" name="__codelineno-0-630"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">batch</span><span class="p">:</span>
-<a id="__codelineno-0-631" name="__codelineno-0-631"></a>        <span class="k">return</span> <span class="p">[]</span>
-<a id="__codelineno-0-632" name="__codelineno-0-632"></a>
-<a id="__codelineno-0-633" name="__codelineno-0-633"></a>    <span class="n">results</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
-<a id="__codelineno-0-634" name="__codelineno-0-634"></a>    <span class="n">uncached_requests</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-0-635" name="__codelineno-0-635"></a>
-<a id="__codelineno-0-636" name="__codelineno-0-636"></a>    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">request</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
-<a id="__codelineno-0-637" name="__codelineno-0-637"></a>        <span class="n">messages</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[])</span>
-<a id="__codelineno-0-638" name="__codelineno-0-638"></a>        <span class="n">system_prompt</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;system_prompt&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-639" name="__codelineno-0-639"></a>        <span class="n">use_cache</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;use_cache&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;use_cache&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
-<a id="__codelineno-0-640" name="__codelineno-0-640"></a>
-<a id="__codelineno-0-641" name="__codelineno-0-641"></a>        <span class="n">merged_params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">request</span><span class="p">}</span>
-<a id="__codelineno-0-642" name="__codelineno-0-642"></a>        <span class="n">merged_params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<a id="__codelineno-0-643" name="__codelineno-0-643"></a>        <span class="n">merged_params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;system_prompt&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<a id="__codelineno-0-644" name="__codelineno-0-644"></a>
-<a id="__codelineno-0-645" name="__codelineno-0-645"></a>        <span class="k">if</span> <span class="n">use_cache</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span>
-<a id="__codelineno-0-646" name="__codelineno-0-646"></a>            <span class="n">cache_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">make_key</span><span class="p">(</span>
-<a id="__codelineno-0-647" name="__codelineno-0-647"></a>                <span class="n">messages</span><span class="p">,</span> <span class="n">system_prompt</span><span class="p">,</span> <span class="o">**</span><span class="n">_cache_key_params</span><span class="p">(</span><span class="n">merged_params</span><span class="p">)</span>
-<a id="__codelineno-0-648" name="__codelineno-0-648"></a>            <span class="p">)</span>
-<a id="__codelineno-0-649" name="__codelineno-0-649"></a>            <span class="n">cached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span>
-<a id="__codelineno-0-650" name="__codelineno-0-650"></a>            <span class="k">if</span> <span class="n">cached</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-651" name="__codelineno-0-651"></a>                <span class="n">results</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">cached</span>
-<a id="__codelineno-0-652" name="__codelineno-0-652"></a>                <span class="k">continue</span>
-<a id="__codelineno-0-653" name="__codelineno-0-653"></a>
-<a id="__codelineno-0-654" name="__codelineno-0-654"></a>        <span class="n">uncached_requests</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">merged_params</span><span class="p">))</span>
+<span class="normal"><a href="#__codelineno-0-745">745</a></span>
+<span class="normal"><a href="#__codelineno-0-746">746</a></span>
+<span class="normal"><a href="#__codelineno-0-747">747</a></span>
+<span class="normal"><a href="#__codelineno-0-748">748</a></span>
+<span class="normal"><a href="#__codelineno-0-749">749</a></span>
+<span class="normal"><a href="#__codelineno-0-750">750</a></span>
+<span class="normal"><a href="#__codelineno-0-751">751</a></span>
+<span class="normal"><a href="#__codelineno-0-752">752</a></span>
+<span class="normal"><a href="#__codelineno-0-753">753</a></span>
+<span class="normal"><a href="#__codelineno-0-754">754</a></span>
+<span class="normal"><a href="#__codelineno-0-755">755</a></span>
+<span class="normal"><a href="#__codelineno-0-756">756</a></span>
+<span class="normal"><a href="#__codelineno-0-757">757</a></span>
+<span class="normal"><a href="#__codelineno-0-758">758</a></span>
+<span class="normal"><a href="#__codelineno-0-759">759</a></span>
+<span class="normal"><a href="#__codelineno-0-760">760</a></span>
+<span class="normal"><a href="#__codelineno-0-761">761</a></span>
+<span class="normal"><a href="#__codelineno-0-762">762</a></span>
+<span class="normal"><a href="#__codelineno-0-763">763</a></span>
+<span class="normal"><a href="#__codelineno-0-764">764</a></span>
+<span class="normal"><a href="#__codelineno-0-765">765</a></span>
+<span class="normal"><a href="#__codelineno-0-766">766</a></span>
+<span class="normal"><a href="#__codelineno-0-767">767</a></span>
+<span class="normal"><a href="#__codelineno-0-768">768</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-623" name="__codelineno-0-623"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_batch</span><span class="p">(</span>
+<a id="__codelineno-0-624" name="__codelineno-0-624"></a>    <span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="o">*</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+<a id="__codelineno-0-625" name="__codelineno-0-625"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]:</span>
+<a id="__codelineno-0-626" name="__codelineno-0-626"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate completions for multiple requests using vLLM batching.</span>
+<a id="__codelineno-0-627" name="__codelineno-0-627"></a>
+<a id="__codelineno-0-628" name="__codelineno-0-628"></a><span class="sd">    Requests are grouped by their generation parameters and submitted</span>
+<a id="__codelineno-0-629" name="__codelineno-0-629"></a><span class="sd">    together to vLLM&#39;s continuous batching engine, which handles</span>
+<a id="__codelineno-0-630" name="__codelineno-0-630"></a><span class="sd">    scheduling and KV-cache management internally.</span>
+<a id="__codelineno-0-631" name="__codelineno-0-631"></a>
+<a id="__codelineno-0-632" name="__codelineno-0-632"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-633" name="__codelineno-0-633"></a><span class="sd">        batch: List of request dictionaries, each optionally containing:</span>
+<a id="__codelineno-0-634" name="__codelineno-0-634"></a><span class="sd">            - messages: Conversation history (required).</span>
+<a id="__codelineno-0-635" name="__codelineno-0-635"></a><span class="sd">            - system_prompt: Optional system prompt.</span>
+<a id="__codelineno-0-636" name="__codelineno-0-636"></a><span class="sd">            - n, max_tokens, temperature, top_p, top_k,</span>
+<a id="__codelineno-0-637" name="__codelineno-0-637"></a><span class="sd">              stop_sequences, return_token_probs, logprob_aggregation,</span>
+<a id="__codelineno-0-638" name="__codelineno-0-638"></a><span class="sd">              logprob_alpha, seed: Per-request generation parameters.</span>
+<a id="__codelineno-0-639" name="__codelineno-0-639"></a><span class="sd">        seed: Default seed applied to every request; a request dict&#39;s</span>
+<a id="__codelineno-0-640" name="__codelineno-0-640"></a><span class="sd">            own &quot;seed&quot; key overrides this for that request. Required</span>
+<a id="__codelineno-0-641" name="__codelineno-0-641"></a><span class="sd">            (pass None explicitly to opt out). Requests sharing a</span>
+<a id="__codelineno-0-642" name="__codelineno-0-642"></a><span class="sd">            sub-batch group must share the same seed (it is part of the</span>
+<a id="__codelineno-0-643" name="__codelineno-0-643"></a><span class="sd">            grouping key).</span>
+<a id="__codelineno-0-644" name="__codelineno-0-644"></a><span class="sd">        **kwargs: Common parameters applied to all requests (overridden</span>
+<a id="__codelineno-0-645" name="__codelineno-0-645"></a><span class="sd">            by per-request values with the same key).</span>
+<a id="__codelineno-0-646" name="__codelineno-0-646"></a>
+<a id="__codelineno-0-647" name="__codelineno-0-647"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-648" name="__codelineno-0-648"></a><span class="sd">        List of completion lists, one inner list per batch request.</span>
+<a id="__codelineno-0-649" name="__codelineno-0-649"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-650" name="__codelineno-0-650"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">batch</span><span class="p">:</span>
+<a id="__codelineno-0-651" name="__codelineno-0-651"></a>        <span class="k">return</span> <span class="p">[]</span>
+<a id="__codelineno-0-652" name="__codelineno-0-652"></a>
+<a id="__codelineno-0-653" name="__codelineno-0-653"></a>    <span class="n">results</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+<a id="__codelineno-0-654" name="__codelineno-0-654"></a>    <span class="n">uncached_requests</span> <span class="o">=</span> <span class="p">[]</span>
 <a id="__codelineno-0-655" name="__codelineno-0-655"></a>
-<a id="__codelineno-0-656" name="__codelineno-0-656"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">uncached_requests</span><span class="p">:</span>
-<a id="__codelineno-0-657" name="__codelineno-0-657"></a>        <span class="k">return</span> <span class="n">results</span>
-<a id="__codelineno-0-658" name="__codelineno-0-658"></a>
-<a id="__codelineno-0-659" name="__codelineno-0-659"></a>    <span class="c1"># Group uncached requests by generation parameters so that requests</span>
-<a id="__codelineno-0-660" name="__codelineno-0-660"></a>    <span class="c1"># sharing identical settings are dispatched to vLLM together.</span>
-<a id="__codelineno-0-661" name="__codelineno-0-661"></a>    <span class="n">param_groups</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
-<a id="__codelineno-0-662" name="__codelineno-0-662"></a>    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">merged_params</span> <span class="ow">in</span> <span class="n">uncached_requests</span><span class="p">:</span>
-<a id="__codelineno-0-663" name="__codelineno-0-663"></a>        <span class="n">param_key</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-0-664" name="__codelineno-0-664"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-<a id="__codelineno-0-665" name="__codelineno-0-665"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max_tokens&quot;</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span>
-<a id="__codelineno-0-666" name="__codelineno-0-666"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-<a id="__codelineno-0-667" name="__codelineno-0-667"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;top_p&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-<a id="__codelineno-0-668" name="__codelineno-0-668"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;top_k&quot;</span><span class="p">),</span>
-<a id="__codelineno-0-669" name="__codelineno-0-669"></a>            <span class="nb">tuple</span><span class="p">(</span><span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stop_sequences&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">[]),</span>
-<a id="__codelineno-0-670" name="__codelineno-0-670"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;return_token_probs&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<a id="__codelineno-0-671" name="__codelineno-0-671"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;logprob_aggregation&quot;</span><span class="p">,</span> <span class="s2">&quot;arithmetic_mean&quot;</span><span class="p">),</span>
-<a id="__codelineno-0-672" name="__codelineno-0-672"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;logprob_alpha&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-<a id="__codelineno-0-673" name="__codelineno-0-673"></a>            <span class="n">_tools_grouping_key</span><span class="p">(</span><span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">)),</span>
-<a id="__codelineno-0-674" name="__codelineno-0-674"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tool_choice&quot;</span><span class="p">,</span> <span class="s2">&quot;auto&quot;</span><span class="p">),</span>
-<a id="__codelineno-0-675" name="__codelineno-0-675"></a>        <span class="p">)</span>
-<a id="__codelineno-0-676" name="__codelineno-0-676"></a>        <span class="k">if</span> <span class="n">param_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">param_groups</span><span class="p">:</span>
-<a id="__codelineno-0-677" name="__codelineno-0-677"></a>            <span class="n">param_groups</span><span class="p">[</span><span class="n">param_key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-0-678" name="__codelineno-0-678"></a>        <span class="n">param_groups</span><span class="p">[</span><span class="n">param_key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">merged_params</span><span class="p">))</span>
-<a id="__codelineno-0-679" name="__codelineno-0-679"></a>
-<a id="__codelineno-0-680" name="__codelineno-0-680"></a>    <span class="k">for</span> <span class="n">param_key</span><span class="p">,</span> <span class="n">group_requests</span> <span class="ow">in</span> <span class="n">param_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<a id="__codelineno-0-681" name="__codelineno-0-681"></a>        <span class="p">(</span>
-<a id="__codelineno-0-682" name="__codelineno-0-682"></a>            <span class="n">n</span><span class="p">,</span>
-<a id="__codelineno-0-683" name="__codelineno-0-683"></a>            <span class="n">max_tokens</span><span class="p">,</span>
-<a id="__codelineno-0-684" name="__codelineno-0-684"></a>            <span class="n">temperature</span><span class="p">,</span>
-<a id="__codelineno-0-685" name="__codelineno-0-685"></a>            <span class="n">top_p</span><span class="p">,</span>
-<a id="__codelineno-0-686" name="__codelineno-0-686"></a>            <span class="n">top_k</span><span class="p">,</span>
-<a id="__codelineno-0-687" name="__codelineno-0-687"></a>            <span class="n">stop_sequences_tuple</span><span class="p">,</span>
-<a id="__codelineno-0-688" name="__codelineno-0-688"></a>            <span class="n">return_token_probs</span><span class="p">,</span>
-<a id="__codelineno-0-689" name="__codelineno-0-689"></a>            <span class="n">logprob_aggregation</span><span class="p">,</span>
-<a id="__codelineno-0-690" name="__codelineno-0-690"></a>            <span class="n">logprob_alpha</span><span class="p">,</span>
-<a id="__codelineno-0-691" name="__codelineno-0-691"></a>            <span class="n">_</span><span class="p">,</span>
-<a id="__codelineno-0-692" name="__codelineno-0-692"></a>            <span class="n">_</span><span class="p">,</span>
-<a id="__codelineno-0-693" name="__codelineno-0-693"></a>        <span class="p">)</span> <span class="o">=</span> <span class="n">param_key</span>
-<a id="__codelineno-0-694" name="__codelineno-0-694"></a>        <span class="n">stop_sequences</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-0-695" name="__codelineno-0-695"></a>            <span class="nb">list</span><span class="p">(</span><span class="n">stop_sequences_tuple</span><span class="p">)</span> <span class="k">if</span> <span class="n">stop_sequences_tuple</span> <span class="k">else</span> <span class="kc">None</span>
+<a id="__codelineno-0-656" name="__codelineno-0-656"></a>    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">request</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
+<a id="__codelineno-0-657" name="__codelineno-0-657"></a>        <span class="n">messages</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[])</span>
+<a id="__codelineno-0-658" name="__codelineno-0-658"></a>        <span class="n">system_prompt</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;system_prompt&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-659" name="__codelineno-0-659"></a>        <span class="n">use_cache</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;use_cache&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;use_cache&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+<a id="__codelineno-0-660" name="__codelineno-0-660"></a>
+<a id="__codelineno-0-661" name="__codelineno-0-661"></a>        <span class="n">merged_params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">request</span><span class="p">}</span>
+<a id="__codelineno-0-662" name="__codelineno-0-662"></a>        <span class="n">merged_params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<a id="__codelineno-0-663" name="__codelineno-0-663"></a>        <span class="n">merged_params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;system_prompt&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<a id="__codelineno-0-664" name="__codelineno-0-664"></a>
+<a id="__codelineno-0-665" name="__codelineno-0-665"></a>        <span class="k">if</span> <span class="n">use_cache</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span>
+<a id="__codelineno-0-666" name="__codelineno-0-666"></a>            <span class="n">cache_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">make_key</span><span class="p">(</span>
+<a id="__codelineno-0-667" name="__codelineno-0-667"></a>                <span class="n">messages</span><span class="p">,</span> <span class="n">system_prompt</span><span class="p">,</span> <span class="o">**</span><span class="n">_cache_key_params</span><span class="p">(</span><span class="n">merged_params</span><span class="p">)</span>
+<a id="__codelineno-0-668" name="__codelineno-0-668"></a>            <span class="p">)</span>
+<a id="__codelineno-0-669" name="__codelineno-0-669"></a>            <span class="n">cached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span>
+<a id="__codelineno-0-670" name="__codelineno-0-670"></a>            <span class="k">if</span> <span class="n">cached</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-671" name="__codelineno-0-671"></a>                <span class="n">results</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">cached</span>
+<a id="__codelineno-0-672" name="__codelineno-0-672"></a>                <span class="k">continue</span>
+<a id="__codelineno-0-673" name="__codelineno-0-673"></a>
+<a id="__codelineno-0-674" name="__codelineno-0-674"></a>        <span class="n">uncached_requests</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">merged_params</span><span class="p">))</span>
+<a id="__codelineno-0-675" name="__codelineno-0-675"></a>
+<a id="__codelineno-0-676" name="__codelineno-0-676"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">uncached_requests</span><span class="p">:</span>
+<a id="__codelineno-0-677" name="__codelineno-0-677"></a>        <span class="k">return</span> <span class="n">results</span>
+<a id="__codelineno-0-678" name="__codelineno-0-678"></a>
+<a id="__codelineno-0-679" name="__codelineno-0-679"></a>    <span class="c1"># Group uncached requests by generation parameters so that requests</span>
+<a id="__codelineno-0-680" name="__codelineno-0-680"></a>    <span class="c1"># sharing identical settings are dispatched to vLLM together.</span>
+<a id="__codelineno-0-681" name="__codelineno-0-681"></a>    <span class="n">param_groups</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-0-682" name="__codelineno-0-682"></a>    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">merged_params</span> <span class="ow">in</span> <span class="n">uncached_requests</span><span class="p">:</span>
+<a id="__codelineno-0-683" name="__codelineno-0-683"></a>        <span class="n">param_key</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-684" name="__codelineno-0-684"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<a id="__codelineno-0-685" name="__codelineno-0-685"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max_tokens&quot;</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span>
+<a id="__codelineno-0-686" name="__codelineno-0-686"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+<a id="__codelineno-0-687" name="__codelineno-0-687"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;top_p&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+<a id="__codelineno-0-688" name="__codelineno-0-688"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;top_k&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-689" name="__codelineno-0-689"></a>            <span class="nb">tuple</span><span class="p">(</span><span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stop_sequences&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">[]),</span>
+<a id="__codelineno-0-690" name="__codelineno-0-690"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;return_token_probs&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<a id="__codelineno-0-691" name="__codelineno-0-691"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;logprob_aggregation&quot;</span><span class="p">,</span> <span class="s2">&quot;arithmetic_mean&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-692" name="__codelineno-0-692"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;logprob_alpha&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+<a id="__codelineno-0-693" name="__codelineno-0-693"></a>            <span class="n">_tools_grouping_key</span><span class="p">(</span><span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">)),</span>
+<a id="__codelineno-0-694" name="__codelineno-0-694"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tool_choice&quot;</span><span class="p">,</span> <span class="s2">&quot;auto&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-695" name="__codelineno-0-695"></a>            <span class="n">merged_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;seed&quot;</span><span class="p">),</span>
 <a id="__codelineno-0-696" name="__codelineno-0-696"></a>        <span class="p">)</span>
-<a id="__codelineno-0-697" name="__codelineno-0-697"></a>        <span class="c1"># All requests in this group share equivalent tools (that&#39;s what</span>
-<a id="__codelineno-0-698" name="__codelineno-0-698"></a>        <span class="c1"># the grouping key guarantees); the key itself only carries a</span>
-<a id="__codelineno-0-699" name="__codelineno-0-699"></a>        <span class="c1"># serialized form, so pull the real Tool objects back from the</span>
-<a id="__codelineno-0-700" name="__codelineno-0-700"></a>        <span class="c1"># first request.</span>
-<a id="__codelineno-0-701" name="__codelineno-0-701"></a>        <span class="n">tools</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Tool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">group_requests</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-702" name="__codelineno-0-702"></a>
-<a id="__codelineno-0-703" name="__codelineno-0-703"></a>        <span class="n">prompts</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-0-704" name="__codelineno-0-704"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_format_messages</span><span class="p">(</span>
-<a id="__codelineno-0-705" name="__codelineno-0-705"></a>                <span class="n">req</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[]),</span>
-<a id="__codelineno-0-706" name="__codelineno-0-706"></a>                <span class="n">system_prompt</span><span class="o">=</span><span class="n">req</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;system_prompt&quot;</span><span class="p">),</span>
-<a id="__codelineno-0-707" name="__codelineno-0-707"></a>                <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
-<a id="__codelineno-0-708" name="__codelineno-0-708"></a>            <span class="p">)</span>
-<a id="__codelineno-0-709" name="__codelineno-0-709"></a>            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">group_requests</span>
-<a id="__codelineno-0-710" name="__codelineno-0-710"></a>        <span class="p">]</span>
-<a id="__codelineno-0-711" name="__codelineno-0-711"></a>        <span class="n">sampling_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_sampling_params</span><span class="p">(</span>
-<a id="__codelineno-0-712" name="__codelineno-0-712"></a>            <span class="n">n</span><span class="p">,</span>
-<a id="__codelineno-0-713" name="__codelineno-0-713"></a>            <span class="n">max_tokens</span><span class="p">,</span>
-<a id="__codelineno-0-714" name="__codelineno-0-714"></a>            <span class="n">temperature</span><span class="p">,</span>
-<a id="__codelineno-0-715" name="__codelineno-0-715"></a>            <span class="n">top_p</span><span class="p">,</span>
-<a id="__codelineno-0-716" name="__codelineno-0-716"></a>            <span class="n">top_k</span><span class="p">,</span>
-<a id="__codelineno-0-717" name="__codelineno-0-717"></a>            <span class="n">stop_sequences</span><span class="p">,</span>
-<a id="__codelineno-0-718" name="__codelineno-0-718"></a>            <span class="n">return_token_probs</span><span class="p">,</span>
-<a id="__codelineno-0-719" name="__codelineno-0-719"></a>        <span class="p">)</span>
-<a id="__codelineno-0-720" name="__codelineno-0-720"></a>        <span class="n">request_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">prompts</span><span class="p">,</span> <span class="n">sampling_params</span><span class="p">)</span>
-<a id="__codelineno-0-721" name="__codelineno-0-721"></a>        <span class="n">group_completions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_completions</span><span class="p">(</span>
-<a id="__codelineno-0-722" name="__codelineno-0-722"></a>            <span class="n">request_outputs</span><span class="p">,</span>
-<a id="__codelineno-0-723" name="__codelineno-0-723"></a>            <span class="n">return_token_probs</span><span class="p">,</span>
-<a id="__codelineno-0-724" name="__codelineno-0-724"></a>            <span class="n">logprob_aggregation</span><span class="p">,</span>
-<a id="__codelineno-0-725" name="__codelineno-0-725"></a>            <span class="n">logprob_alpha</span><span class="p">,</span>
-<a id="__codelineno-0-726" name="__codelineno-0-726"></a>            <span class="n">tools_requested</span><span class="o">=</span><span class="n">tools</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-727" name="__codelineno-0-727"></a>        <span class="p">)</span>
-<a id="__codelineno-0-728" name="__codelineno-0-728"></a>
-<a id="__codelineno-0-729" name="__codelineno-0-729"></a>        <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">orig_idx</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">merged_params</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
-<a id="__codelineno-0-730" name="__codelineno-0-730"></a>            <span class="n">group_requests</span>
-<a id="__codelineno-0-731" name="__codelineno-0-731"></a>        <span class="p">):</span>
-<a id="__codelineno-0-732" name="__codelineno-0-732"></a>            <span class="n">completions</span> <span class="o">=</span> <span class="n">group_completions</span><span class="p">[</span><span class="n">batch_idx</span><span class="p">]</span>
-<a id="__codelineno-0-733" name="__codelineno-0-733"></a>
-<a id="__codelineno-0-734" name="__codelineno-0-734"></a>            <span class="n">use_cache_req</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;use_cache&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;use_cache&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
-<a id="__codelineno-0-735" name="__codelineno-0-735"></a>            <span class="k">if</span> <span class="n">use_cache_req</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span>
-<a id="__codelineno-0-736" name="__codelineno-0-736"></a>                <span class="n">req_msgs</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[])</span>
-<a id="__codelineno-0-737" name="__codelineno-0-737"></a>                <span class="n">req_sys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;system_prompt&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-738" name="__codelineno-0-738"></a>                <span class="n">cache_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">make_key</span><span class="p">(</span>
-<a id="__codelineno-0-739" name="__codelineno-0-739"></a>                    <span class="n">req_msgs</span><span class="p">,</span> <span class="n">req_sys</span><span class="p">,</span> <span class="o">**</span><span class="n">_cache_key_params</span><span class="p">(</span><span class="n">merged_params</span><span class="p">)</span>
-<a id="__codelineno-0-740" name="__codelineno-0-740"></a>                <span class="p">)</span>
-<a id="__codelineno-0-741" name="__codelineno-0-741"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">completions</span><span class="p">)</span>
-<a id="__codelineno-0-742" name="__codelineno-0-742"></a>
-<a id="__codelineno-0-743" name="__codelineno-0-743"></a>            <span class="n">results</span><span class="p">[</span><span class="n">orig_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">completions</span>
-<a id="__codelineno-0-744" name="__codelineno-0-744"></a>
-<a id="__codelineno-0-745" name="__codelineno-0-745"></a>    <span class="k">return</span> <span class="n">results</span>
+<a id="__codelineno-0-697" name="__codelineno-0-697"></a>        <span class="k">if</span> <span class="n">param_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">param_groups</span><span class="p">:</span>
+<a id="__codelineno-0-698" name="__codelineno-0-698"></a>            <span class="n">param_groups</span><span class="p">[</span><span class="n">param_key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-699" name="__codelineno-0-699"></a>        <span class="n">param_groups</span><span class="p">[</span><span class="n">param_key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">merged_params</span><span class="p">))</span>
+<a id="__codelineno-0-700" name="__codelineno-0-700"></a>
+<a id="__codelineno-0-701" name="__codelineno-0-701"></a>    <span class="k">for</span> <span class="n">param_key</span><span class="p">,</span> <span class="n">group_requests</span> <span class="ow">in</span> <span class="n">param_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-0-702" name="__codelineno-0-702"></a>        <span class="p">(</span>
+<a id="__codelineno-0-703" name="__codelineno-0-703"></a>            <span class="n">n</span><span class="p">,</span>
+<a id="__codelineno-0-704" name="__codelineno-0-704"></a>            <span class="n">max_tokens</span><span class="p">,</span>
+<a id="__codelineno-0-705" name="__codelineno-0-705"></a>            <span class="n">temperature</span><span class="p">,</span>
+<a id="__codelineno-0-706" name="__codelineno-0-706"></a>            <span class="n">top_p</span><span class="p">,</span>
+<a id="__codelineno-0-707" name="__codelineno-0-707"></a>            <span class="n">top_k</span><span class="p">,</span>
+<a id="__codelineno-0-708" name="__codelineno-0-708"></a>            <span class="n">stop_sequences_tuple</span><span class="p">,</span>
+<a id="__codelineno-0-709" name="__codelineno-0-709"></a>            <span class="n">return_token_probs</span><span class="p">,</span>
+<a id="__codelineno-0-710" name="__codelineno-0-710"></a>            <span class="n">logprob_aggregation</span><span class="p">,</span>
+<a id="__codelineno-0-711" name="__codelineno-0-711"></a>            <span class="n">logprob_alpha</span><span class="p">,</span>
+<a id="__codelineno-0-712" name="__codelineno-0-712"></a>            <span class="n">_</span><span class="p">,</span>
+<a id="__codelineno-0-713" name="__codelineno-0-713"></a>            <span class="n">_</span><span class="p">,</span>
+<a id="__codelineno-0-714" name="__codelineno-0-714"></a>            <span class="n">group_seed</span><span class="p">,</span>
+<a id="__codelineno-0-715" name="__codelineno-0-715"></a>        <span class="p">)</span> <span class="o">=</span> <span class="n">param_key</span>
+<a id="__codelineno-0-716" name="__codelineno-0-716"></a>        <span class="n">stop_sequences</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-717" name="__codelineno-0-717"></a>            <span class="nb">list</span><span class="p">(</span><span class="n">stop_sequences_tuple</span><span class="p">)</span> <span class="k">if</span> <span class="n">stop_sequences_tuple</span> <span class="k">else</span> <span class="kc">None</span>
+<a id="__codelineno-0-718" name="__codelineno-0-718"></a>        <span class="p">)</span>
+<a id="__codelineno-0-719" name="__codelineno-0-719"></a>        <span class="c1"># All requests in this group share equivalent tools (that&#39;s what</span>
+<a id="__codelineno-0-720" name="__codelineno-0-720"></a>        <span class="c1"># the grouping key guarantees); the key itself only carries a</span>
+<a id="__codelineno-0-721" name="__codelineno-0-721"></a>        <span class="c1"># serialized form, so pull the real Tool objects back from the</span>
+<a id="__codelineno-0-722" name="__codelineno-0-722"></a>        <span class="c1"># first request.</span>
+<a id="__codelineno-0-723" name="__codelineno-0-723"></a>        <span class="n">tools</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Tool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">group_requests</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-724" name="__codelineno-0-724"></a>
+<a id="__codelineno-0-725" name="__codelineno-0-725"></a>        <span class="n">prompts</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-726" name="__codelineno-0-726"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_format_messages</span><span class="p">(</span>
+<a id="__codelineno-0-727" name="__codelineno-0-727"></a>                <span class="n">req</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[]),</span>
+<a id="__codelineno-0-728" name="__codelineno-0-728"></a>                <span class="n">system_prompt</span><span class="o">=</span><span class="n">req</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;system_prompt&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-729" name="__codelineno-0-729"></a>                <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+<a id="__codelineno-0-730" name="__codelineno-0-730"></a>            <span class="p">)</span>
+<a id="__codelineno-0-731" name="__codelineno-0-731"></a>            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">group_requests</span>
+<a id="__codelineno-0-732" name="__codelineno-0-732"></a>        <span class="p">]</span>
+<a id="__codelineno-0-733" name="__codelineno-0-733"></a>        <span class="n">sampling_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_sampling_params</span><span class="p">(</span>
+<a id="__codelineno-0-734" name="__codelineno-0-734"></a>            <span class="n">n</span><span class="p">,</span>
+<a id="__codelineno-0-735" name="__codelineno-0-735"></a>            <span class="n">max_tokens</span><span class="p">,</span>
+<a id="__codelineno-0-736" name="__codelineno-0-736"></a>            <span class="n">temperature</span><span class="p">,</span>
+<a id="__codelineno-0-737" name="__codelineno-0-737"></a>            <span class="n">top_p</span><span class="p">,</span>
+<a id="__codelineno-0-738" name="__codelineno-0-738"></a>            <span class="n">top_k</span><span class="p">,</span>
+<a id="__codelineno-0-739" name="__codelineno-0-739"></a>            <span class="n">stop_sequences</span><span class="p">,</span>
+<a id="__codelineno-0-740" name="__codelineno-0-740"></a>            <span class="n">return_token_probs</span><span class="p">,</span>
+<a id="__codelineno-0-741" name="__codelineno-0-741"></a>            <span class="n">group_seed</span><span class="p">,</span>
+<a id="__codelineno-0-742" name="__codelineno-0-742"></a>        <span class="p">)</span>
+<a id="__codelineno-0-743" name="__codelineno-0-743"></a>        <span class="n">request_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">prompts</span><span class="p">,</span> <span class="n">sampling_params</span><span class="p">)</span>
+<a id="__codelineno-0-744" name="__codelineno-0-744"></a>        <span class="n">group_completions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_completions</span><span class="p">(</span>
+<a id="__codelineno-0-745" name="__codelineno-0-745"></a>            <span class="n">request_outputs</span><span class="p">,</span>
+<a id="__codelineno-0-746" name="__codelineno-0-746"></a>            <span class="n">return_token_probs</span><span class="p">,</span>
+<a id="__codelineno-0-747" name="__codelineno-0-747"></a>            <span class="n">logprob_aggregation</span><span class="p">,</span>
+<a id="__codelineno-0-748" name="__codelineno-0-748"></a>            <span class="n">logprob_alpha</span><span class="p">,</span>
+<a id="__codelineno-0-749" name="__codelineno-0-749"></a>            <span class="n">tools_requested</span><span class="o">=</span><span class="n">tools</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-750" name="__codelineno-0-750"></a>        <span class="p">)</span>
+<a id="__codelineno-0-751" name="__codelineno-0-751"></a>
+<a id="__codelineno-0-752" name="__codelineno-0-752"></a>        <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">orig_idx</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">merged_params</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+<a id="__codelineno-0-753" name="__codelineno-0-753"></a>            <span class="n">group_requests</span>
+<a id="__codelineno-0-754" name="__codelineno-0-754"></a>        <span class="p">):</span>
+<a id="__codelineno-0-755" name="__codelineno-0-755"></a>            <span class="n">completions</span> <span class="o">=</span> <span class="n">group_completions</span><span class="p">[</span><span class="n">batch_idx</span><span class="p">]</span>
+<a id="__codelineno-0-756" name="__codelineno-0-756"></a>
+<a id="__codelineno-0-757" name="__codelineno-0-757"></a>            <span class="n">use_cache_req</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;use_cache&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;use_cache&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+<a id="__codelineno-0-758" name="__codelineno-0-758"></a>            <span class="k">if</span> <span class="n">use_cache_req</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span>
+<a id="__codelineno-0-759" name="__codelineno-0-759"></a>                <span class="n">req_msgs</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[])</span>
+<a id="__codelineno-0-760" name="__codelineno-0-760"></a>                <span class="n">req_sys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;system_prompt&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-761" name="__codelineno-0-761"></a>                <span class="n">cache_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">make_key</span><span class="p">(</span>
+<a id="__codelineno-0-762" name="__codelineno-0-762"></a>                    <span class="n">req_msgs</span><span class="p">,</span> <span class="n">req_sys</span><span class="p">,</span> <span class="o">**</span><span class="n">_cache_key_params</span><span class="p">(</span><span class="n">merged_params</span><span class="p">)</span>
+<a id="__codelineno-0-763" name="__codelineno-0-763"></a>                <span class="p">)</span>
+<a id="__codelineno-0-764" name="__codelineno-0-764"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">completions</span><span class="p">)</span>
+<a id="__codelineno-0-765" name="__codelineno-0-765"></a>
+<a id="__codelineno-0-766" name="__codelineno-0-766"></a>            <span class="n">results</span><span class="p">[</span><span class="n">orig_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">completions</span>
+<a id="__codelineno-0-767" name="__codelineno-0-767"></a>
+<a id="__codelineno-0-768" name="__codelineno-0-768"></a>    <span class="k">return</span> <span class="n">results</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3065,27 +3136,27 @@ by per-request values with the same key).</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/wordbase/providers/vllm_provider.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-747">747</a></span>
-<span class="normal"><a href="#__codelineno-0-748">748</a></span>
-<span class="normal"><a href="#__codelineno-0-749">749</a></span>
-<span class="normal"><a href="#__codelineno-0-750">750</a></span>
-<span class="normal"><a href="#__codelineno-0-751">751</a></span>
-<span class="normal"><a href="#__codelineno-0-752">752</a></span>
-<span class="normal"><a href="#__codelineno-0-753">753</a></span>
-<span class="normal"><a href="#__codelineno-0-754">754</a></span>
-<span class="normal"><a href="#__codelineno-0-755">755</a></span>
-<span class="normal"><a href="#__codelineno-0-756">756</a></span>
-<span class="normal"><a href="#__codelineno-0-757">757</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-747" name="__codelineno-0-747"></a><span class="k">def</span><span class="w"> </span><span class="nf">count_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<a id="__codelineno-0-748" name="__codelineno-0-748"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Count tokens in text using the model&#39;s tokenizer.</span>
-<a id="__codelineno-0-749" name="__codelineno-0-749"></a>
-<a id="__codelineno-0-750" name="__codelineno-0-750"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-751" name="__codelineno-0-751"></a><span class="sd">        text: Text to tokenize and count.</span>
-<a id="__codelineno-0-752" name="__codelineno-0-752"></a>
-<a id="__codelineno-0-753" name="__codelineno-0-753"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-754" name="__codelineno-0-754"></a><span class="sd">        Number of tokens in the text.</span>
-<a id="__codelineno-0-755" name="__codelineno-0-755"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-756" name="__codelineno-0-756"></a>    <span class="n">tokenizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tokenizer</span><span class="p">()</span>
-<a id="__codelineno-0-757" name="__codelineno-0-757"></a>    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-770">770</a></span>
+<span class="normal"><a href="#__codelineno-0-771">771</a></span>
+<span class="normal"><a href="#__codelineno-0-772">772</a></span>
+<span class="normal"><a href="#__codelineno-0-773">773</a></span>
+<span class="normal"><a href="#__codelineno-0-774">774</a></span>
+<span class="normal"><a href="#__codelineno-0-775">775</a></span>
+<span class="normal"><a href="#__codelineno-0-776">776</a></span>
+<span class="normal"><a href="#__codelineno-0-777">777</a></span>
+<span class="normal"><a href="#__codelineno-0-778">778</a></span>
+<span class="normal"><a href="#__codelineno-0-779">779</a></span>
+<span class="normal"><a href="#__codelineno-0-780">780</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-770" name="__codelineno-0-770"></a><span class="k">def</span><span class="w"> </span><span class="nf">count_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-0-771" name="__codelineno-0-771"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Count tokens in text using the model&#39;s tokenizer.</span>
+<a id="__codelineno-0-772" name="__codelineno-0-772"></a>
+<a id="__codelineno-0-773" name="__codelineno-0-773"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-774" name="__codelineno-0-774"></a><span class="sd">        text: Text to tokenize and count.</span>
+<a id="__codelineno-0-775" name="__codelineno-0-775"></a>
+<a id="__codelineno-0-776" name="__codelineno-0-776"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-777" name="__codelineno-0-777"></a><span class="sd">        Number of tokens in the text.</span>
+<a id="__codelineno-0-778" name="__codelineno-0-778"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-779" name="__codelineno-0-779"></a>    <span class="n">tokenizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tokenizer</span><span class="p">()</span>
+<a id="__codelineno-0-780" name="__codelineno-0-780"></a>    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
