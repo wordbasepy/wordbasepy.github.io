@@ -898,6 +898,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#reproducibility-seed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproducibility: seed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#calibration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1611,6 +1622,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#reproducibility-seed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproducibility: seed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#calibration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1734,14 +1756,27 @@ when you want one.</p>
 <li><strong><code>SamplingBackend</code></strong> — everything else (Anthropic, Google, Bedrock, HF Inference API, or any provider without logprob access): draws repeated samples and estimates the label distribution from the sample counts, with adaptive stopping once a target precision is reached.</li>
 </ul>
 <p>You can also pass an explicit <code>backend=</code> to <code>LLMDistribution</code> to override auto-selection.</p>
+<h2 id="reproducibility-seed">Reproducibility: <code>seed</code><a class="headerlink" href="#reproducibility-seed" title="Permanent link">&para;</a></h2>
+<p><code>classify()</code>, <code>query()</code>, <code>query_batch()</code>, and <code>fit_calibration()</code> all accept an optional <code>seed=</code> (default <code>None</code>), meaningful only on the <code>SamplingBackend</code> path:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">result</span> <span class="o">=</span> <span class="n">classify</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="s2">&quot;Is the sky blue? Answer yes or no.&quot;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</code></pre></div>
+<p><code>SamplingBackend</code> draws responses in batches (one <code>generate()</code> call per batch); each batch derives its own seed from the one you pass, so a rerun with the same seed reproduces the same sequence of samples rather than just replaying the first batch over and over.</p>
+<div class="admonition note">
+<p class="admonition-title">No effect on the exact/logprob path</p>
+<p><code>HFLogitBackend</code>, <code>APILogprobBackend</code>, and <code>HFClassifierBackend</code> all query at <code>temperature=0.0</code> and are already deterministic regardless of seed. Passing <code>seed=</code> when one of these backends is selected emits a <code>UserWarning</code> rather than silently doing nothing.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Adaptive sampling reproducibility depends on the provider</p>
+<p>With <code>n_samples=None</code> (adaptive stopping), the same seed reproduces the same convergence trajectory only for providers with a real determinism guarantee (vLLM, local HuggingFace). OpenAI/Google/HF-Inference's "best effort" seeding means a seeded adaptive <code>classify()</code> call could converge after a different number of batches on rerun.</p>
+</div>
 <h2 id="calibration">Calibration<a class="headerlink" href="#calibration" title="Permanent link">&para;</a></h2>
 <p>Raw model confidence is often over- or under-confident. Fit a calibration transform from held-out labeled examples:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">dist</span><span class="o">.</span><span class="n">fit_calibration</span><span class="p">(</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;The Earth orbits the Sun.&quot;</span><span class="p">,</span> <span class="s2">&quot;The Moon is made of cheese.&quot;</span><span class="p">],</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;platt&quot;</span><span class="p">,</span>   <span class="c1"># or &quot;temperature&quot;</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">)</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">result</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Water boils at 100°C at sea level.&quot;</span><span class="p">)</span>  <span class="c1"># now calibrated</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">dist</span><span class="o">.</span><span class="n">fit_calibration</span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;The Earth orbits the Sun.&quot;</span><span class="p">,</span> <span class="s2">&quot;The Moon is made of cheese.&quot;</span><span class="p">],</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;platt&quot;</span><span class="p">,</span>   <span class="c1"># or &quot;temperature&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">result</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Water boils at 100°C at sea level.&quot;</span><span class="p">)</span>  <span class="c1"># now calibrated</span>
 </code></pre></div>
 <p><code>method="temperature"</code> needs only <code>scipy</code> (the <code>classification</code> extra); <code>method="platt"</code> additionally needs <code>scikit-learn</code> (the <code>calibration</code> extra).</p>
 <h2 id="gradient-workflows">Gradient workflows<a class="headerlink" href="#gradient-workflows" title="Permanent link">&para;</a></h2>

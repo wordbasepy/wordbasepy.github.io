@@ -1591,6 +1591,7 @@
 <h2 id="whats-native-vs-emulated">What's native vs. emulated<a class="headerlink" href="#whats-native-vs-emulated" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><code>n</code> completions</strong>: native — one API call returns all <code>n</code> choices.</li>
+<li><strong><code>seed</code></strong>: native, but "best effort" per OpenAI's own docs — determinism is not guaranteed even with the same seed and parameters.</li>
 <li><strong>Token counting</strong>: local, via <code>tiktoken</code> — no API call.</li>
 <li><strong>Token-level logprobs</strong>: supported via <code>return_token_probs=True</code>; <code>top_logprobs=N</code> requests the top-N alternatives per position.</li>
 <li><strong>Batching</strong>: <code>generate_batch()</code> issues concurrent requests via a thread pool (OpenAI has no server-side batch endpoint used here).</li>

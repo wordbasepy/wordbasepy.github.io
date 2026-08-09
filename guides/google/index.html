@@ -1591,6 +1591,7 @@
 <h2 id="whats-native-vs-emulated">What's native vs. emulated<a class="headerlink" href="#whats-native-vs-emulated" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><code>n</code> completions</strong>: emulated — Gemini has no native <code>n</code> for this API, so <code>n</code> concurrent requests are issued via a thread pool.</li>
+<li><strong><code>seed</code></strong>: native (<code>GenerateContentConfig.seed</code>), "best effort" rather than guaranteed. Since <code>n&gt;1</code> is <code>n</code> independent calls, each call is seeded with a hash-based derivation of <code>(seed, call_index)</code> rather than the same seed repeated, so the <code>n</code> completions stay distinct while the batch as a whole is reproducible.</li>
 <li><strong>Token counting</strong>: a real API call to Gemini's <code>count_tokens</code> endpoint.</li>
 <li><strong>Token-level logprobs</strong>: not available through the standard Gemini API — <code>completion["tokens"]</code> is always empty regardless of <code>return_token_probs</code>.</li>
 <li><strong>System prompts</strong>: passed as a separate <code>system_instruction</code> parameter rather than a message, and the assistant role is mapped to Gemini's <code>"model"</code> role internally — handled automatically by <code>_format_messages()</code>.</li>

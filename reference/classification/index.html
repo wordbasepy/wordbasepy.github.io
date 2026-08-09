@@ -1916,7 +1916,7 @@ estimation (no backend exposes exact log-probabilities for it).</p>
 
   
       dataclass
-   (wordbase.calibration.CalibrationConfig)" href="../calibration/#wordbase.calibration.CalibrationConfig">CalibrationConfig</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="n"><span title="float">float</span></span> <span class="o">|</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="wordbase.classification.T">T</span></span><span class="p">,</span> <span class="n"><span title="float">float</span></span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="wordbase.classification.T">T</span></span><span class="p">,</span> <span class="n"><span title="float">float</span></span><span class="p">]</span>
+   (wordbase.calibration.CalibrationConfig)" href="../calibration/#wordbase.calibration.CalibrationConfig">CalibrationConfig</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="n"><span title="float">float</span></span> <span class="o">|</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="wordbase.classification.T">T</span></span><span class="p">,</span> <span class="n"><span title="float">float</span></span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="wordbase.classification.T">T</span></span><span class="p">,</span> <span class="n"><span title="float">float</span></span><span class="p">]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -2061,6 +2061,25 @@ symmetric prior; a dict applies a per-label prior.</p>
                   <code>1.0</code>
             </td>
           </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>seed</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Base random seed for reproducible sampling, or None. Only
+meaningful on the Monte Carlo sampling path -- see
+LLMDistribution.query()'s docstring for the exact-path warning
+and adaptive-sampling reproducibility caveats.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
       </tbody>
     </table>
 
@@ -2145,7 +2164,12 @@ symmetric prior; a dict applies a per-label prior.</p>
 <span class="normal"><a href="#__codelineno-0-124">124</a></span>
 <span class="normal"><a href="#__codelineno-0-125">125</a></span>
 <span class="normal"><a href="#__codelineno-0-126">126</a></span>
-<span class="normal"><a href="#__codelineno-0-127">127</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="k">def</span><span class="w"> </span><span class="nf">classify</span><span class="p">(</span>
+<span class="normal"><a href="#__codelineno-0-127">127</a></span>
+<span class="normal"><a href="#__codelineno-0-128">128</a></span>
+<span class="normal"><a href="#__codelineno-0-129">129</a></span>
+<span class="normal"><a href="#__codelineno-0-130">130</a></span>
+<span class="normal"><a href="#__codelineno-0-131">131</a></span>
+<span class="normal"><a href="#__codelineno-0-132">132</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="k">def</span><span class="w"> </span><span class="nf">classify</span><span class="p">(</span>
 <a id="__codelineno-0-83" name="__codelineno-0-83"></a>    <span class="n">provider</span><span class="p">:</span> <span class="n">LLMProvider</span><span class="p">,</span>
 <a id="__codelineno-0-84" name="__codelineno-0-84"></a>    <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="n">labels</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">T</span><span class="p">],</span>
@@ -2154,43 +2178,48 @@ symmetric prior; a dict applies a per-label prior.</p>
 <a id="__codelineno-0-88" name="__codelineno-0-88"></a>    <span class="n">calibration</span><span class="p">:</span> <span class="n">CalibrationConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-89" name="__codelineno-0-89"></a>    <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<a id="__codelineno-0-92" name="__codelineno-0-92"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Classify a prompt against a set of labels in one call.</span>
-<a id="__codelineno-0-93" name="__codelineno-0-93"></a>
-<a id="__codelineno-0-94" name="__codelineno-0-94"></a><span class="sd">    Builds Verbalizer.identity(labels) when verbalizer is not supplied,</span>
-<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="sd">    constructs an LLMDistribution, and runs a single query(). Works with</span>
-<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="sd">    both the exact logprob path and the Monte Carlo sampling path,</span>
-<a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">    depending on what the provider supports.</span>
-<a id="__codelineno-0-98" name="__codelineno-0-98"></a>
-<a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="sd">        provider: Any LLMProvider instance to query.</span>
-<a id="__codelineno-0-101" name="__codelineno-0-101"></a><span class="sd">        prompt: The full prompt string to classify.</span>
-<a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="sd">        labels: The candidate labels to classify prompt against.</span>
-<a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="sd">        verbalizer: Maps labels to surface form strings. Defaults to</span>
-<a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="sd">            Verbalizer.identity(labels) (each label&#39;s str() form is its own</span>
-<a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="sd">            surface form).</span>
-<a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="sd">        calibration: Calibration transform applied to the result. Defaults</span>
-<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">            to an uncalibrated (method=&quot;none&quot;) config.</span>
-<a id="__codelineno-0-108" name="__codelineno-0-108"></a><span class="sd">        n_samples: Sample count for the sampling path. None enables</span>
-<a id="__codelineno-0-109" name="__codelineno-0-109"></a><span class="sd">            adaptive stopping.</span>
-<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="sd">        alpha: Dirichlet prior for the sampling path: a scalar applies a</span>
-<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="sd">            symmetric prior; a dict applies a per-label prior.</span>
-<a id="__codelineno-0-112" name="__codelineno-0-112"></a>
-<a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-114" name="__codelineno-0-114"></a><span class="sd">        Dict mapping each label to its calibrated log-probability (values</span>
-<a id="__codelineno-0-115" name="__codelineno-0-115"></a><span class="sd">        &lt;= 0, exp(v) sums to ~1 across labels).</span>
-<a id="__codelineno-0-116" name="__codelineno-0-116"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-117" name="__codelineno-0-117"></a>    <span class="k">if</span> <span class="n">verbalizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-118" name="__codelineno-0-118"></a>        <span class="n">verbalizer</span> <span class="o">=</span> <span class="n">Verbalizer</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
-<a id="__codelineno-0-119" name="__codelineno-0-119"></a>
-<a id="__codelineno-0-120" name="__codelineno-0-120"></a>    <span class="n">distribution</span><span class="p">:</span> <span class="n">LLMDistribution</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">=</span> <span class="n">LLMDistribution</span><span class="p">(</span>
-<a id="__codelineno-0-121" name="__codelineno-0-121"></a>        <span class="n">provider</span><span class="p">,</span>
-<a id="__codelineno-0-122" name="__codelineno-0-122"></a>        <span class="n">verbalizer</span><span class="o">=</span><span class="n">verbalizer</span><span class="p">,</span>
-<a id="__codelineno-0-123" name="__codelineno-0-123"></a>        <span class="n">calibration</span><span class="o">=</span><span class="n">calibration</span><span class="p">,</span>
-<a id="__codelineno-0-124" name="__codelineno-0-124"></a>        <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span>
-<a id="__codelineno-0-125" name="__codelineno-0-125"></a>        <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
-<a id="__codelineno-0-126" name="__codelineno-0-126"></a>    <span class="p">)</span>
-<a id="__codelineno-0-127" name="__codelineno-0-127"></a>    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">dict</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">distribution</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">prompt</span><span class="p">))</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Classify a prompt against a set of labels in one call.</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="sd">    Builds Verbalizer.identity(labels) when verbalizer is not supplied,</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="sd">    constructs an LLMDistribution, and runs a single query(). Works with</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">    both the exact logprob path and the Monte Carlo sampling path,</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">    depending on what the provider supports.</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a><span class="sd">        provider: Any LLMProvider instance to query.</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="sd">        prompt: The full prompt string to classify.</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="sd">        labels: The candidate labels to classify prompt against.</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="sd">        verbalizer: Maps labels to surface form strings. Defaults to</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="sd">            Verbalizer.identity(labels) (each label&#39;s str() form is its own</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="sd">            surface form).</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">        calibration: Calibration transform applied to the result. Defaults</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a><span class="sd">            to an uncalibrated (method=&quot;none&quot;) config.</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a><span class="sd">        n_samples: Sample count for the sampling path. None enables</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="sd">            adaptive stopping.</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="sd">        alpha: Dirichlet prior for the sampling path: a scalar applies a</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="sd">            symmetric prior; a dict applies a per-label prior.</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="sd">        seed: Base random seed for reproducible sampling, or None. Only</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a><span class="sd">            meaningful on the Monte Carlo sampling path -- see</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a><span class="sd">            LLMDistribution.query()&#39;s docstring for the exact-path warning</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a><span class="sd">            and adaptive-sampling reproducibility caveats.</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a><span class="sd">        Dict mapping each label to its calibrated log-probability (values</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a><span class="sd">        &lt;= 0, exp(v) sums to ~1 across labels).</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a>    <span class="k">if</span> <span class="n">verbalizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a>        <span class="n">verbalizer</span> <span class="o">=</span> <span class="n">Verbalizer</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a>    <span class="n">distribution</span><span class="p">:</span> <span class="n">LLMDistribution</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">=</span> <span class="n">LLMDistribution</span><span class="p">(</span>
+<a id="__codelineno-0-126" name="__codelineno-0-126"></a>        <span class="n">provider</span><span class="p">,</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a>        <span class="n">verbalizer</span><span class="o">=</span><span class="n">verbalizer</span><span class="p">,</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128"></a>        <span class="n">calibration</span><span class="o">=</span><span class="n">calibration</span><span class="p">,</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129"></a>        <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span>
+<a id="__codelineno-0-130" name="__codelineno-0-130"></a>        <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+<a id="__codelineno-0-131" name="__codelineno-0-131"></a>    <span class="p">)</span>
+<a id="__codelineno-0-132" name="__codelineno-0-132"></a>    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">dict</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">distribution</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

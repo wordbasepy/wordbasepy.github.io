@@ -1599,6 +1599,7 @@
 <h2 id="whats-native-vs-emulated">What's native vs. emulated<a class="headerlink" href="#whats-native-vs-emulated" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><code>n</code> completions</strong>: emulated — the HF Inference API has no native <code>n</code>, so <code>n</code> concurrent requests are issued via a thread pool.</li>
+<li><strong><code>seed</code></strong>: native (this is an OpenAI-compatible API), but "best effort" — determinism is not guaranteed. Since <code>n&gt;1</code> is <code>n</code> independent calls rather than one call's native sampling, each call is seeded with a hash-based derivation of <code>(seed, call_index)</code> rather than the same seed repeated, so the <code>n</code> completions stay distinct while the batch as a whole is reproducible.</li>
 <li><strong>Token counting</strong>: lazy-loads a local <code>transformers</code> tokenizer for the model on first use; falls back to a character-based estimate (with a <code>UserWarning</code>) if that fails or <code>transformers</code> isn't installed.</li>
 <li><strong>Token-level logprobs</strong>: available for models that expose them; when unavailable a <code>UserWarning</code> is emitted and <code>completion["tokens"]</code> is left empty.</li>
 </ul>

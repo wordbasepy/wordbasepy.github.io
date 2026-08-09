@@ -1851,8 +1851,7 @@ the HF_TOKEN environment variable.</p>
 
                   <details class="mkdocstrings-source">
                     <summary>Source code in <code>src/wordbase/providers/huggingface_inference.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
-<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
 <span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
 <span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
 <span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
@@ -1888,44 +1887,45 @@ the HF_TOKEN environment variable.</p>
 <span class="normal"><a href="#__codelineno-0-124">124</a></span>
 <span class="normal"><a href="#__codelineno-0-125">125</a></span>
 <span class="normal"><a href="#__codelineno-0-126">126</a></span>
-<span class="normal"><a href="#__codelineno-0-127">127</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a>    <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-0-93" name="__codelineno-0-93"></a>    <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="n">endpoint_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize the HuggingFace Inference API provider.</span>
-<a id="__codelineno-0-97" name="__codelineno-0-97"></a>
-<a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="sd">        model: HuggingFace model ID (e.g. &quot;meta-llama/Llama-3.1-8B-Instruct&quot;)</span>
-<a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="sd">            or any model accessible through the Inference API.</span>
-<a id="__codelineno-0-101" name="__codelineno-0-101"></a><span class="sd">        api_key: HuggingFace API token. Falls back to the HF_TOKEN env</span>
-<a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="sd">            var when omitted.</span>
-<a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="sd">        endpoint_url: URL of a dedicated Inference Endpoint. When</span>
-<a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="sd">            provided, the model ID is used only for metadata; requests</span>
-<a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="sd">            are routed to this URL instead of the Hub serverless API.</span>
-<a id="__codelineno-0-106" name="__codelineno-0-106"></a>
-<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">    Raises:</span>
-<a id="__codelineno-0-108" name="__codelineno-0-108"></a><span class="sd">        ImportError: If huggingface-hub is not installed.</span>
-<a id="__codelineno-0-109" name="__codelineno-0-109"></a><span class="sd">        AuthenticationError: If no API key is found in the argument or</span>
-<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="sd">            the HF_TOKEN environment variable.</span>
-<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-112" name="__codelineno-0-112"></a>    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-<a id="__codelineno-0-113" name="__codelineno-0-113"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
-<a id="__codelineno-0-114" name="__codelineno-0-114"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">endpoint_url</span> <span class="o">=</span> <span class="n">endpoint_url</span>
-<a id="__codelineno-0-115" name="__codelineno-0-115"></a>
-<a id="__codelineno-0-116" name="__codelineno-0-116"></a>    <span class="n">resolved_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolve_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="s2">&quot;HF_TOKEN&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-117" name="__codelineno-0-117"></a>
-<a id="__codelineno-0-118" name="__codelineno-0-118"></a>    <span class="k">if</span> <span class="n">endpoint_url</span><span class="p">:</span>
-<a id="__codelineno-0-119" name="__codelineno-0-119"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">:</span> <span class="n">InferenceClient</span> <span class="o">=</span> <span class="n">InferenceClient</span><span class="p">(</span>
-<a id="__codelineno-0-120" name="__codelineno-0-120"></a>            <span class="n">base_url</span><span class="o">=</span><span class="n">endpoint_url</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="n">resolved_key</span>
-<a id="__codelineno-0-121" name="__codelineno-0-121"></a>        <span class="p">)</span>
-<a id="__codelineno-0-122" name="__codelineno-0-122"></a>    <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-123" name="__codelineno-0-123"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">InferenceClient</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">resolved_key</span><span class="p">)</span>
-<a id="__codelineno-0-124" name="__codelineno-0-124"></a>
-<a id="__codelineno-0-125" name="__codelineno-0-125"></a>    <span class="c1"># Lazy-loaded tokenizer for count_tokens().</span>
-<a id="__codelineno-0-126" name="__codelineno-0-126"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-0-127" name="__codelineno-0-127"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer_loaded</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="normal"><a href="#__codelineno-0-127">127</a></span>
+<span class="normal"><a href="#__codelineno-0-128">128</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>    <span class="n">endpoint_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize the HuggingFace Inference API provider.</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="sd">        model: HuggingFace model ID (e.g. &quot;meta-llama/Llama-3.1-8B-Instruct&quot;)</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a><span class="sd">            or any model accessible through the Inference API.</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="sd">        api_key: HuggingFace API token. Falls back to the HF_TOKEN env</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="sd">            var when omitted.</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="sd">        endpoint_url: URL of a dedicated Inference Endpoint. When</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="sd">            provided, the model ID is used only for metadata; requests</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="sd">            are routed to this URL instead of the Hub serverless API.</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a><span class="sd">    Raises:</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a><span class="sd">        ImportError: If huggingface-hub is not installed.</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="sd">        AuthenticationError: If no API key is found in the argument or</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="sd">            the HF_TOKEN environment variable.</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a>    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">endpoint_url</span> <span class="o">=</span> <span class="n">endpoint_url</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a>    <span class="n">resolved_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolve_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="s2">&quot;HF_TOKEN&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a>    <span class="k">if</span> <span class="n">endpoint_url</span><span class="p">:</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">:</span> <span class="n">InferenceClient</span> <span class="o">=</span> <span class="n">InferenceClient</span><span class="p">(</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a>            <span class="n">base_url</span><span class="o">=</span><span class="n">endpoint_url</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="n">resolved_key</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a>        <span class="p">)</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">InferenceClient</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">resolved_key</span><span class="p">)</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a>
+<a id="__codelineno-0-126" name="__codelineno-0-126"></a>    <span class="c1"># Lazy-loaded tokenizer for count_tokens().</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer_loaded</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -2028,12 +2028,7 @@ tokenizer cannot be loaded, emitting a UserWarning in that case.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/wordbase/providers/huggingface_inference.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-497">497</a></span>
-<span class="normal"><a href="#__codelineno-0-498">498</a></span>
-<span class="normal"><a href="#__codelineno-0-499">499</a></span>
-<span class="normal"><a href="#__codelineno-0-500">500</a></span>
-<span class="normal"><a href="#__codelineno-0-501">501</a></span>
-<span class="normal"><a href="#__codelineno-0-502">502</a></span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-502">502</a></span>
 <span class="normal"><a href="#__codelineno-0-503">503</a></span>
 <span class="normal"><a href="#__codelineno-0-504">504</a></span>
 <span class="normal"><a href="#__codelineno-0-505">505</a></span>
@@ -2065,44 +2060,49 @@ tokenizer cannot be loaded, emitting a UserWarning in that case.</p>
 <span class="normal"><a href="#__codelineno-0-531">531</a></span>
 <span class="normal"><a href="#__codelineno-0-532">532</a></span>
 <span class="normal"><a href="#__codelineno-0-533">533</a></span>
-<span class="normal"><a href="#__codelineno-0-534">534</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-497" name="__codelineno-0-497"></a><span class="k">def</span><span class="w"> </span><span class="nf">count_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<a id="__codelineno-0-498" name="__codelineno-0-498"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Count tokens using a lazy-loaded tokenizer.</span>
-<a id="__codelineno-0-499" name="__codelineno-0-499"></a>
-<a id="__codelineno-0-500" name="__codelineno-0-500"></a><span class="sd">    Attempts to load the model&#39;s tokenizer via ``transformers`` on the</span>
-<a id="__codelineno-0-501" name="__codelineno-0-501"></a><span class="sd">    first call. Falls back to a character-based approximation</span>
-<a id="__codelineno-0-502" name="__codelineno-0-502"></a><span class="sd">    (1 token ≈ 4 characters) when ``transformers`` is unavailable or the</span>
-<a id="__codelineno-0-503" name="__codelineno-0-503"></a><span class="sd">    tokenizer cannot be loaded, emitting a UserWarning in that case.</span>
+<span class="normal"><a href="#__codelineno-0-534">534</a></span>
+<span class="normal"><a href="#__codelineno-0-535">535</a></span>
+<span class="normal"><a href="#__codelineno-0-536">536</a></span>
+<span class="normal"><a href="#__codelineno-0-537">537</a></span>
+<span class="normal"><a href="#__codelineno-0-538">538</a></span>
+<span class="normal"><a href="#__codelineno-0-539">539</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-502" name="__codelineno-0-502"></a><span class="k">def</span><span class="w"> </span><span class="nf">count_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-0-503" name="__codelineno-0-503"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Count tokens using a lazy-loaded tokenizer.</span>
 <a id="__codelineno-0-504" name="__codelineno-0-504"></a>
-<a id="__codelineno-0-505" name="__codelineno-0-505"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-506" name="__codelineno-0-506"></a><span class="sd">        text: Text to tokenize and count.</span>
-<a id="__codelineno-0-507" name="__codelineno-0-507"></a>
-<a id="__codelineno-0-508" name="__codelineno-0-508"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-509" name="__codelineno-0-509"></a><span class="sd">        Token count, exact when a tokenizer is available or approximate</span>
-<a id="__codelineno-0-510" name="__codelineno-0-510"></a><span class="sd">        otherwise (minimum 1).</span>
-<a id="__codelineno-0-511" name="__codelineno-0-511"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-512" name="__codelineno-0-512"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer_loaded</span><span class="p">:</span>
-<a id="__codelineno-0-513" name="__codelineno-0-513"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-0-514" name="__codelineno-0-514"></a>            <span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>  <span class="c1"># pylint: disable=import-outside-toplevel</span>
-<a id="__codelineno-0-515" name="__codelineno-0-515"></a>                <span class="n">AutoTokenizer</span><span class="p">,</span>
-<a id="__codelineno-0-516" name="__codelineno-0-516"></a>            <span class="p">)</span>
-<a id="__codelineno-0-517" name="__codelineno-0-517"></a>
-<a id="__codelineno-0-518" name="__codelineno-0-518"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
-<a id="__codelineno-0-519" name="__codelineno-0-519"></a>        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pylint: disable=broad-except</span>
-<a id="__codelineno-0-520" name="__codelineno-0-520"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-0-521" name="__codelineno-0-521"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer_loaded</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-0-505" name="__codelineno-0-505"></a><span class="sd">    Attempts to load the model&#39;s tokenizer via ``transformers`` on the</span>
+<a id="__codelineno-0-506" name="__codelineno-0-506"></a><span class="sd">    first call. Falls back to a character-based approximation</span>
+<a id="__codelineno-0-507" name="__codelineno-0-507"></a><span class="sd">    (1 token ≈ 4 characters) when ``transformers`` is unavailable or the</span>
+<a id="__codelineno-0-508" name="__codelineno-0-508"></a><span class="sd">    tokenizer cannot be loaded, emitting a UserWarning in that case.</span>
+<a id="__codelineno-0-509" name="__codelineno-0-509"></a>
+<a id="__codelineno-0-510" name="__codelineno-0-510"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-511" name="__codelineno-0-511"></a><span class="sd">        text: Text to tokenize and count.</span>
+<a id="__codelineno-0-512" name="__codelineno-0-512"></a>
+<a id="__codelineno-0-513" name="__codelineno-0-513"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-514" name="__codelineno-0-514"></a><span class="sd">        Token count, exact when a tokenizer is available or approximate</span>
+<a id="__codelineno-0-515" name="__codelineno-0-515"></a><span class="sd">        otherwise (minimum 1).</span>
+<a id="__codelineno-0-516" name="__codelineno-0-516"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-517" name="__codelineno-0-517"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer_loaded</span><span class="p">:</span>
+<a id="__codelineno-0-518" name="__codelineno-0-518"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-519" name="__codelineno-0-519"></a>            <span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>  <span class="c1"># pylint: disable=import-outside-toplevel</span>
+<a id="__codelineno-0-520" name="__codelineno-0-520"></a>                <span class="n">AutoTokenizer</span><span class="p">,</span>
+<a id="__codelineno-0-521" name="__codelineno-0-521"></a>            <span class="p">)</span>
 <a id="__codelineno-0-522" name="__codelineno-0-522"></a>
-<a id="__codelineno-0-523" name="__codelineno-0-523"></a>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-524" name="__codelineno-0-524"></a>        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<a id="__codelineno-0-525" name="__codelineno-0-525"></a>            <span class="sa">f</span><span class="s2">&quot;Cannot load tokenizer for &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">&#39;. &quot;</span>
-<a id="__codelineno-0-526" name="__codelineno-0-526"></a>            <span class="sa">f</span><span class="s2">&quot;Using character-based approximation &quot;</span>
-<a id="__codelineno-0-527" name="__codelineno-0-527"></a>            <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">_CHARS_PER_TOKEN</span><span class="si">}</span><span class="s2"> chars ≈ 1 token). &quot;</span>
-<a id="__codelineno-0-528" name="__codelineno-0-528"></a>            <span class="s2">&quot;Install wordbase[huggingface] for accurate token counting.&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-529" name="__codelineno-0-529"></a>            <span class="ne">UserWarning</span><span class="p">,</span>
-<a id="__codelineno-0-530" name="__codelineno-0-530"></a>            <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-<a id="__codelineno-0-531" name="__codelineno-0-531"></a>        <span class="p">)</span>
-<a id="__codelineno-0-532" name="__codelineno-0-532"></a>        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">//</span> <span class="n">_CHARS_PER_TOKEN</span><span class="p">)</span>
-<a id="__codelineno-0-533" name="__codelineno-0-533"></a>
-<a id="__codelineno-0-534" name="__codelineno-0-534"></a>    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+<a id="__codelineno-0-523" name="__codelineno-0-523"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+<a id="__codelineno-0-524" name="__codelineno-0-524"></a>        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pylint: disable=broad-except</span>
+<a id="__codelineno-0-525" name="__codelineno-0-525"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-0-526" name="__codelineno-0-526"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer_loaded</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-0-527" name="__codelineno-0-527"></a>
+<a id="__codelineno-0-528" name="__codelineno-0-528"></a>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-529" name="__codelineno-0-529"></a>        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<a id="__codelineno-0-530" name="__codelineno-0-530"></a>            <span class="sa">f</span><span class="s2">&quot;Cannot load tokenizer for &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">&#39;. &quot;</span>
+<a id="__codelineno-0-531" name="__codelineno-0-531"></a>            <span class="sa">f</span><span class="s2">&quot;Using character-based approximation &quot;</span>
+<a id="__codelineno-0-532" name="__codelineno-0-532"></a>            <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">_CHARS_PER_TOKEN</span><span class="si">}</span><span class="s2"> chars ≈ 1 token). &quot;</span>
+<a id="__codelineno-0-533" name="__codelineno-0-533"></a>            <span class="s2">&quot;Install wordbase[huggingface] for accurate token counting.&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-534" name="__codelineno-0-534"></a>            <span class="ne">UserWarning</span><span class="p">,</span>
+<a id="__codelineno-0-535" name="__codelineno-0-535"></a>            <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-0-536" name="__codelineno-0-536"></a>        <span class="p">)</span>
+<a id="__codelineno-0-537" name="__codelineno-0-537"></a>        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">//</span> <span class="n">_CHARS_PER_TOKEN</span><span class="p">)</span>
+<a id="__codelineno-0-538" name="__codelineno-0-538"></a>
+<a id="__codelineno-0-539" name="__codelineno-0-539"></a>    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

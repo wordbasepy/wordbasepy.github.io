@@ -1591,6 +1591,7 @@
 <h2 id="whats-native-vs-emulated">What's native vs. emulated<a class="headerlink" href="#whats-native-vs-emulated" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><code>n</code> completions</strong>: emulated — Bedrock's converse API has no native <code>n</code>, so <code>n</code> concurrent requests are issued via a thread pool.</li>
+<li><strong><code>seed</code></strong>: <strong>not supported</strong> — the unified Converse API has no generic seed field (it would require per-model <code>additionalModelRequestFields</code>, inconsistent across model families). Passing <code>seed=&lt;int&gt;</code> emits a <code>UserWarning</code> and is otherwise ignored, rather than silently doing nothing.</li>
 <li><strong>Token counting</strong>: a character-based estimate (~4 characters/token) with a <code>UserWarning</code> — the converse API has no dedicated token-counting endpoint.</li>
 <li><strong>Token-level logprobs</strong>: not available through the converse API — <code>completion["tokens"]</code> is always empty regardless of <code>return_token_probs</code>.</li>
 <li><strong>Switching model IDs</strong>: the same provider interface works against any Bedrock-hosted model — just change the <code>model=</code> string (e.g. Anthropic, Meta Llama, Amazon Titan/Nova).</li>
