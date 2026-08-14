@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="../bedrock/">
+        <link rel="prev" href="../classification/">
       
       
-        <link rel="next" href="../caching/">
+        <link rel="next" href="../../reference/provider/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>HuggingFace Inference API - WordBase</title>
+        <title>Tool / Function Calling - WordBase</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#huggingface-inference-api" class="md-skip">
+        <a href="#tool-function-calling" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              HuggingFace Inference API
+              Tool / Function Calling
             
           </span>
         </div>
@@ -735,37 +735,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HuggingFace Inference API
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../huggingface-inference/" class="md-nav__link">
         
   
   
@@ -781,59 +754,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#dedicated-endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dedicated endpoints
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-native-vs-emulated" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What's native vs. emulated
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#see-also" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        See also
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -899,10 +819,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../tool-calling/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool / Function Calling
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -918,6 +865,103 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#defining-a-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining a tool
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requesting-a-tool-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requesting a tool call
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executing-the-call-and-replaying-the-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executing the call and replaying the result
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forcing-a-specific-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forcing a specific tool
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provider-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provider support
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caching-and-batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching and batching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1551,10 +1595,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#dedicated-endpoints" class="md-nav__link">
+  <a href="#defining-a-tool" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dedicated endpoints
+        Defining a tool
       
     </span>
   </a>
@@ -1562,10 +1606,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#whats-native-vs-emulated" class="md-nav__link">
+  <a href="#requesting-a-tool-call" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What's native vs. emulated
+        Requesting a tool call
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executing-the-call-and-replaying-the-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executing the call and replaying the result
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forcing-a-specific-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forcing a specific tool
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provider-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provider support
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caching-and-batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching and batching
       
     </span>
   </a>
@@ -1600,7 +1688,7 @@
 
 
   
-    <a href="https://github.com/wordbasepy/wordbase/edit/main/docs/guides/huggingface-inference.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/wordbasepy/wordbase/edit/main/docs/guides/tool-calling.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1608,33 +1696,128 @@
   
 
 
-<h1 id="huggingface-inference-api">HuggingFace Inference API<a class="headerlink" href="#huggingface-inference-api" title="Permanent link">&para;</a></h1>
-<p><code>HuggingFaceInferenceProvider</code> uses <code>InferenceClient</code>'s <code>chat_completion()</code> endpoint against either the Hub's serverless inference or a dedicated Inference Endpoint — no local GPU or model download required.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>hf-inference
+<h1 id="tool-function-calling">Tool / Function Calling<a class="headerlink" href="#tool-function-calling" title="Permanent link">&para;</a></h1>
+<p>WordBase exposes tool calling as a provider capability, not agent orchestration: <code>generate()</code> returns tool-call <em>requests</em>, you execute them yourself, and you feed the results back into the conversation. All 7 providers support it, with varying degrees of native enforcement — see the <a href="#provider-support">provider support</a> table below.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>openai<span class="w">   </span><span class="c1"># or whichever provider extra(s) you need</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">wordbase</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceInferenceProvider</span><span class="p">,</span> <span class="n">Message</span>
+<h2 id="defining-a-tool">Defining a tool<a class="headerlink" href="#defining-a-tool" title="Permanent link">&para;</a></h2>
+<p>A <code>Tool</code> is a name, a description, and a JSON Schema for its arguments:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">wordbase</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tool</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">provider</span> <span class="o">=</span> <span class="n">HuggingFaceInferenceProvider</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;meta-llama/Llama-3.1-8B-Instruct&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">weather_tool</span> <span class="o">=</span> <span class="n">Tool</span><span class="p">(</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Get the current weather for a location.&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">}},</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="p">},</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">)</span>
 </code></pre></div>
-<p>Reads <code>HF_TOKEN</code> from the environment by default.</p>
-<h2 id="dedicated-endpoints">Dedicated endpoints<a class="headerlink" href="#dedicated-endpoints" title="Permanent link">&para;</a></h2>
-<p>Point at a deployed Inference Endpoint instead of serverless inference by passing <code>endpoint_url=</code>; the model ID is then used only for metadata:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">provider</span> <span class="o">=</span> <span class="n">HuggingFaceInferenceProvider</span><span class="p">(</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;your-org/your-model&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">endpoint_url</span><span class="o">=</span><span class="s2">&quot;https://your-endpoint-id.endpoints.huggingface.cloud&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">)</span>
+<h2 id="requesting-a-tool-call">Requesting a tool call<a class="headerlink" href="#requesting-a-tool-call" title="Permanent link">&para;</a></h2>
+<p>Pass <code>tools=</code> to <code>generate()</code>. When the model decides to call one, the completion's <code>finish_reason</code> becomes <code>"tool_calls"</code> and <code>tool_calls</code> is populated with <code>ToolCall</code> objects:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">wordbase</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceProvider</span><span class="p">,</span> <span class="n">Message</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">provider</span> <span class="o">=</span> <span class="n">HuggingFaceProvider</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-0.5B-Instruct&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">messages</span> <span class="o">=</span> <span class="p">[</span><span class="n">Message</span><span class="p">(</span><span class="n">role</span><span class="o">=</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Paris?&quot;</span><span class="p">)]</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">completions</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">weather_tool</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">completion</span> <span class="o">=</span> <span class="n">completions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">completion</span><span class="p">[</span><span class="s2">&quot;finish_reason&quot;</span><span class="p">]</span>  <span class="c1"># &quot;tool_calls&quot;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">completion</span><span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">]</span>     <span class="c1"># [ToolCall(id=..., name=&quot;get_weather&quot;, arguments={&quot;location&quot;: &quot;Paris&quot;})]</span>
 </code></pre></div>
-<h2 id="whats-native-vs-emulated">What's native vs. emulated<a class="headerlink" href="#whats-native-vs-emulated" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong><code>n</code> completions</strong>: emulated — the HF Inference API has no native <code>n</code>, so <code>n</code> concurrent requests are issued via a thread pool.</li>
-<li><strong><code>seed</code></strong>: native (this is an OpenAI-compatible API), but "best effort" — determinism is not guaranteed. Since <code>n&gt;1</code> is <code>n</code> independent calls rather than one call's native sampling, each call is seeded with a hash-based derivation of <code>(seed, call_index)</code> rather than the same seed repeated, so the <code>n</code> completions stay distinct while the batch as a whole is reproducible.</li>
-<li><strong>Token counting</strong>: lazy-loads a local <code>transformers</code> tokenizer for the model on first use; falls back to a character-based estimate (with a <code>UserWarning</code>) if that fails or <code>transformers</code> isn't installed.</li>
-<li><strong>Token-level logprobs</strong>: available for models that expose them; when unavailable a <code>UserWarning</code> is emitted and <code>completion["tokens"]</code> is left empty.</li>
-</ul>
+<p><code>"tool_calls"</code> is only present in the completion dict when the model actually asked for one — check for it, or check <code>finish_reason == "tool_calls"</code>, rather than assuming it exists.</p>
+<h2 id="executing-the-call-and-replaying-the-result">Executing the call and replaying the result<a class="headerlink" href="#executing-the-call-and-replaying-the-result" title="Permanent link">&para;</a></h2>
+<p>WordBase never executes tools itself. Run the function yourself, then feed the result back with <code>ToolUseContent</code>/<code>ToolResultContent</code> blocks and a <code>"tool"</code>-role message so the next <code>generate()</code> call has the full history:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">wordbase.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolResultContent</span><span class="p">,</span> <span class="n">ToolUseContent</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">call</span> <span class="o">=</span> <span class="n">completion</span><span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">result</span> <span class="o">=</span> <span class="n">get_weather</span><span class="p">(</span><span class="o">**</span><span class="n">call</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>  <span class="c1"># your own function</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">messages</span> <span class="o">+=</span> <span class="p">[</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">Message</span><span class="p">(</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="n">role</span><span class="o">=</span><span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="n">content</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>            <span class="n">ToolUseContent</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool_use&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">call</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">arguments</span><span class="o">=</span><span class="n">call</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="p">],</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="p">),</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="n">Message</span><span class="p">(</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="n">role</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="n">content</span><span class="o">=</span><span class="p">[</span><span class="n">ToolResultContent</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool_result&quot;</span><span class="p">,</span> <span class="n">tool_call_id</span><span class="o">=</span><span class="n">call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">result</span><span class="p">)],</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="p">),</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="p">]</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="n">completions</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">weather_tool</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">completions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+</code></pre></div>
+<h2 id="forcing-a-specific-tool">Forcing a specific tool<a class="headerlink" href="#forcing-a-specific-tool" title="Permanent link">&para;</a></h2>
+<p><code>tool_choice</code> accepts <code>"auto"</code> (default), <code>"required"</code>, <code>"none"</code>, or a specific tool name to force that exact call:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">provider</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">weather_tool</span><span class="p">],</span> <span class="n">tool_choice</span><span class="o">=</span><span class="s2">&quot;get_weather&quot;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<p>Enforcement is provider-dependent — see the table below. In particular, it is a documented no-op on <code>HuggingFaceProvider</code>/<code>VLLMProvider</code>: local chat templates have no mechanism to force tool use, so the parameter is accepted for interface compatibility only.</p>
+<h2 id="provider-support">Provider support<a class="headerlink" href="#provider-support" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Native tool calling</th>
+<th><code>tool_choice</code> enforcement</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAI</td>
+<td>Yes</td>
+<td>Full (<code>auto</code>/<code>required</code>/<code>none</code>/forced)</td>
+<td></td>
+</tr>
+<tr>
+<td>Anthropic</td>
+<td>Yes</td>
+<td>Full (mapped to <code>auto</code>/<code>any</code>/<code>none</code>/<code>tool</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>Google Gemini</td>
+<td>Yes</td>
+<td>Full (mapped to <code>tool_config</code> modes)</td>
+<td>No call-id concept — <code>ToolCall.id</code> is synthesized as the tool's name; two calls to the same tool in one turn share an id</td>
+</tr>
+<tr>
+<td>Amazon Bedrock</td>
+<td>Yes</td>
+<td><code>auto</code>/<code>required</code>/forced; <code>"none"</code> omits <code>toolConfig</code> entirely (converse has no "none" mode)</td>
+<td></td>
+</tr>
+<tr>
+<td>HuggingFace Inference API</td>
+<td>Yes (OpenAI-compatible wire format)</td>
+<td>Full</td>
+<td></td>
+</tr>
+<tr>
+<td>HuggingFace (local)</td>
+<td>Via chat template (<code>apply_chat_template(tools=...)</code>)</td>
+<td><strong>No effect</strong> — accepted for interface compatibility only</td>
+<td>Output parsed via the Qwen/Hermes <code>&lt;tool_call&gt;{...}&lt;/tool_call&gt;</code> convention only; other conventions (e.g. Llama 3.1's own format) are not recognized. Raises <code>InvalidRequestError</code> if the tokenizer has no chat template or the template doesn't accept <code>tools=</code>. Not supported together with <code>multimodal=True</code>.</td>
+</tr>
+<tr>
+<td>vLLM</td>
+<td>Same as HuggingFace (local)</td>
+<td><strong>No effect</strong>, same reason</td>
+<td>Same Hermes-only output-parsing limitation; the OpenAI-compatible tool-call parsers vLLM ships (<code>--tool-call-parser</code>) belong to its HTTP server, not the offline engine <code>VLLMProvider</code> wraps</td>
+</tr>
+</tbody>
+</table>
+<h2 id="caching-and-batching">Caching and batching<a class="headerlink" href="#caching-and-batching" title="Permanent link">&para;</a></h2>
+<p><code>tools</code>/<code>tool_choice</code> are part of the cache key and the batch parameter-grouping key, so a batch mixing tool and non-tool requests — or requests with different tool sets — is never conflated into one cache entry or one sub-batch.</p>
 <h2 id="see-also">See also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://github.com/svivek/wordbase/blob/main/examples/huggingface_inference_provider.py"><code>examples/huggingface_inference_provider.py</code></a> — generation, token counting, logprobs, n&gt;1, dedicated endpoints, caching</li>
-<li><a href="../../reference/providers/huggingface_inference/">API reference</a></li>
+<li><a href="https://github.com/svivek/wordbase/blob/main/notebooks/04_tool_calling.ipynb"><code>notebooks/04_tool_calling.ipynb</code></a> — narrative walkthrough with a local model, no API keys needed</li>
+<li><a href="../../reference/types/">Types reference</a> — <code>Tool</code>, <code>ToolCall</code>, <code>ToolUseContent</code>, <code>ToolResultContent</code></li>
+<li><a href="../../reference/provider/"><code>LLMProvider.generate()</code> reference</a> — full <code>tools</code>/<code>tool_choice</code> signature</li>
 </ul>
 
 
