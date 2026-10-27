@@ -807,6 +807,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../guides/ollama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../guides/huggingface-inference/" class="md-nav__link">
         
   
@@ -1153,7 +1181,7 @@
   <span class="md-ellipsis">
     
   
-    Verbalizer
+    Verbalizer / Normalizer
   
 
     
@@ -1471,6 +1499,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/providers/ollama_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1608,11 +1664,12 @@ form above:</p>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>anthropic<span class="w">       </span><span class="c1"># Anthropic</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>google<span class="w">          </span><span class="c1"># Google Gemini</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>bedrock<span class="w">         </span><span class="c1"># Amazon Bedrock</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>hf-inference<span class="w">    </span><span class="c1"># HuggingFace Inference API (serverless or dedicated endpoints)</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>vllm<span class="w">            </span><span class="c1"># vLLM (high-throughput local inference; requires CUDA)</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>classification<span class="w">  </span><span class="c1"># LLMDistribution / classify() / surface_logprobs()</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>calibration<span class="w">     </span><span class="c1"># + Platt-scaling / temperature-scaling calibration</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>all<span class="w">             </span><span class="c1"># everything above, including vllm (still needs a CUDA GPU to run)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>ollama<span class="w">          </span><span class="c1"># Ollama (local or remote server)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>hf-inference<span class="w">    </span><span class="c1"># HuggingFace Inference API (serverless or dedicated endpoints)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>vllm<span class="w">            </span><span class="c1"># vLLM (high-throughput local inference; requires CUDA)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>classification<span class="w">  </span><span class="c1"># LLMDistribution / classify() / surface_logprobs()</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>calibration<span class="w">     </span><span class="c1"># + Platt-scaling / temperature-scaling calibration</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>poetry<span class="w"> </span>install<span class="w"> </span>-E<span class="w"> </span>all<span class="w">             </span><span class="c1"># everything above, including vllm (still needs a CUDA GPU to run)</span>
 </code></pre></div>
 <p>Extras compose, so <code>poetry install -E huggingface -E openai -E classification</code> installs exactly what you need.</p>
 <h2 id="provider-credentials">Provider credentials<a class="headerlink" href="#provider-credentials" title="Permanent link">&para;</a></h2>
@@ -1654,6 +1711,11 @@ form above:</p>
 <td>Amazon Bedrock</td>
 <td><code>BedrockProvider</code></td>
 <td><code>-E bedrock</code>; AWS credentials (env vars, <code>~/.aws/credentials</code>, or IAM role)</td>
+</tr>
+<tr>
+<td>Ollama</td>
+<td><code>OllamaProvider</code></td>
+<td><code>-E ollama</code>; a running Ollama server with the model pulled (no API key)</td>
 </tr>
 <tr>
 <td>HuggingFace Inference API</td>

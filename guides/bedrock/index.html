@@ -14,7 +14,7 @@
         <link rel="prev" href="../google/">
       
       
-        <link rel="next" href="../huggingface-inference/">
+        <link rel="next" href="../ollama/">
       
       
         
@@ -818,6 +818,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ollama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../huggingface-inference/" class="md-nav__link">
         
   
@@ -1164,7 +1192,7 @@
   <span class="md-ellipsis">
     
   
-    Verbalizer
+    Verbalizer / Normalizer
   
 
     
@@ -1482,6 +1510,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/providers/ollama_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1620,7 +1676,7 @@
 <ul>
 <li><strong><code>n</code> completions</strong>: emulated — Bedrock's converse API has no native <code>n</code>, so <code>n</code> concurrent requests are issued via a thread pool.</li>
 <li><strong><code>seed</code></strong>: <strong>not supported</strong> — the unified Converse API has no generic seed field (it would require per-model <code>additionalModelRequestFields</code>, inconsistent across model families). Passing <code>seed=&lt;int&gt;</code> emits a <code>UserWarning</code> and is otherwise ignored, rather than silently doing nothing.</li>
-<li><strong>Token counting</strong>: a character-based estimate (~4 characters/token) with a <code>UserWarning</code> — the converse API has no dedicated token-counting endpoint.</li>
+<li><strong>Token counting</strong>: <code>count_tokens()</code> raises <code>NotImplementedError</code> — the converse API has no token-counting endpoint and Bedrock hosts models with different tokenizers, so any count would be a guess. Exact usage for each request is in <code>completion["metadata"]["input_tokens"]</code> and <code>["output_tokens"]</code>.</li>
 <li><strong>Token-level logprobs</strong>: not available through the converse API — <code>completion["tokens"]</code> is always empty regardless of <code>return_token_probs</code>.</li>
 <li><strong>Switching model IDs</strong>: the same provider interface works against any Bedrock-hosted model — just change the <code>model=</code> string (e.g. Anthropic, Meta Llama, Amazon Titan/Nova).</li>
 </ul>

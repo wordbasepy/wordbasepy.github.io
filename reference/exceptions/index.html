@@ -733,6 +733,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../guides/ollama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../guides/huggingface-inference/" class="md-nav__link">
         
   
@@ -1175,6 +1203,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#wordbase.exceptions.NonEnumerableNormalizerError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;NonEnumerableNormalizerError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#wordbase.exceptions.HighUnknownFractionWarning" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1201,6 +1240,17 @@
     <span class="md-ellipsis">
       
         <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;MultiTokenSurfaceWarning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wordbase.exceptions.SamplingFallbackWarning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;SamplingFallbackWarning
       
     </span>
   </a>
@@ -1291,7 +1341,7 @@
   <span class="md-ellipsis">
     
   
-    Verbalizer
+    Verbalizer / Normalizer
   
 
     
@@ -1612,6 +1662,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/ollama_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1803,6 +1881,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#wordbase.exceptions.NonEnumerableNormalizerError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;NonEnumerableNormalizerError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#wordbase.exceptions.HighUnknownFractionWarning" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1829,6 +1918,17 @@
     <span class="md-ellipsis">
       
         <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;MultiTokenSurfaceWarning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wordbase.exceptions.SamplingFallbackWarning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;SamplingFallbackWarning
       
     </span>
   </a>
@@ -1897,7 +1997,8 @@ warnings inherit from the appropriate standard warning base class.</p>
 ├── AmbiguousVerbalizerError
 ├── NoSurfaceMatchError
 ├── BackendMismatchError
-└── CalibrationNotFittedError</p>
+├── CalibrationNotFittedError
+└── NonEnumerableNormalizerError</p>
 </details>
 
 <details class="warning-hierarchy" open>
@@ -1905,7 +2006,8 @@ warnings inherit from the appropriate standard warning base class.</p>
   <p>UserWarning (base)
 ├── HighUnknownFractionWarning
 ├── TopKTruncationWarning
-└── MultiTokenSurfaceWarning</p>
+├── MultiTokenSurfaceWarning
+└── SamplingFallbackWarning</p>
 </details>        <p>Typical usage example:</p>
 <div class="highlight"><pre><span></span><code>from wordbase.exceptions import AuthenticationError
 
@@ -2256,6 +2358,47 @@ method.</p>
 
 
 
+<h3 id="wordbase.exceptions.NonEnumerableNormalizerError" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">NonEnumerableNormalizerError</span>
+
+
+<a href="#wordbase.exceptions.NonEnumerableNormalizerError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="            WordBaseError (wordbase.exceptions.WordBaseError)" href="#wordbase.exceptions.WordBaseError">WordBaseError</a></code></p>
+
+
+
+        <p>Raised when a normalizer cannot enumerate surfaces for its backend.</p>
+<p>Exact/logprob classification backends (e.g. HFLogitBackend,
+APILogprobBackend) score a fixed set of candidate continuations, so
+they require an EnumerableNormalizer (such as Verbalizer). Open-ended
+normalizers (e.g. IntNormalizer, FloatNormalizer) only implement
+label_for() and work solely with the sampling-based backend. Detected
+at LLMDistribution construction time so failures surface early rather
+than at query time.</p>
+<p>Pass allow_sampling_fallback=True to LLMDistribution to opt into
+sampling-based classification instead of raising (see
+SamplingFallbackWarning).</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
 <h3 id="wordbase.exceptions.HighUnknownFractionWarning" class="doc doc-heading">
 <code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">HighUnknownFractionWarning</span>
 
@@ -2339,6 +2482,42 @@ min_prob_floor rather than the true model probability.</p>
         <p>Issued when a surface form tokenizes to more than one token.</p>
 <p>Teacher-forcing (extra API calls or forward passes) is used to score
 multi-token continuations, which may be slower and less accurate.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="wordbase.exceptions.SamplingFallbackWarning" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">SamplingFallbackWarning</span>
+
+
+<a href="#wordbase.exceptions.SamplingFallbackWarning" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="UserWarning">UserWarning</span></code></p>
+
+
+
+        <p>Issued when LLMDistribution falls back to sampling-based classification.</p>
+<p>Raised when a non-enumerable normalizer (e.g. IntNormalizer) is used
+with allow_sampling_fallback=True against a provider that would
+otherwise support a single exact log-probability call. Sampling
+issues repeated generate() calls instead -- slower, and for
+API-backed providers, additional billed requests.</p>
 
 
 

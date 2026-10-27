@@ -738,6 +738,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ollama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../huggingface-inference/" class="md-nav__link">
         
   
@@ -883,6 +911,34 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-ended-labels-normalizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open-ended labels: Normalizer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Open-ended labels: Normalizer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opting-into-sampling-on-an-otherwise-exact-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opting into sampling on an otherwise-exact provider
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1219,7 +1275,7 @@
   <span class="md-ellipsis">
     
   
-    Verbalizer
+    Verbalizer / Normalizer
   
 
     
@@ -1537,6 +1593,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/providers/ollama_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1635,6 +1719,34 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-ended-labels-normalizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open-ended labels: Normalizer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Open-ended labels: Normalizer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opting-into-sampling-on-an-otherwise-exact-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opting into sampling on an otherwise-exact provider
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1775,6 +1887,34 @@ when you want one.</p>
 <a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">])</span>
 </code></pre></div>
 <p><code>Verbalizer</code> maps each label to one or more surface forms it should match (<code>BOOL_VERBALIZER</code> and <code>SENTIMENT_VERBALIZER</code> ship as ready-made verbalizers). Build your own with <code>Verbalizer({label: [surface_forms...]})</code>, or <code>Verbalizer.identity(labels)</code> when each label is already its own surface form.</p>
+<h2 id="open-ended-labels-normalizer">Open-ended labels: <code>Normalizer</code><a class="headerlink" href="#open-ended-labels-normalizer" title="Permanent link">&para;</a></h2>
+<p><code>Verbalizer</code> is one concrete case of the more general <code>Normalizer</code> abstraction: anything with a <code>label_for(surface: str) -&gt; T | None</code> method. Use a plain <code>Normalizer</code> -- <code>IntNormalizer()</code> or <code>FloatNormalizer()</code> -- when the label space can't reasonably be enumerated as a fixed surface list, e.g. classifying a free-form numeric answer:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">wordbase</span><span class="w"> </span><span class="kn">import</span> <span class="n">LLMDistribution</span><span class="p">,</span> <span class="n">IntNormalizer</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">dist</span> <span class="o">=</span> <span class="n">LLMDistribution</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="n">verbalizer</span><span class="o">=</span><span class="n">IntNormalizer</span><span class="p">())</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">result</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;How many legs does a spider have? Answer with just the number.&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># {8: -0.05, 6: -3.10, ...} -- whatever integers the model actually produced</span>
+</code></pre></div>
+<p><code>IntNormalizer</code>/<code>FloatNormalizer</code> strip whitespace before parsing, so <code>"8"</code>, <code>"8 "</code>, and <code>"8\n"</code> all collapse to the same label without listing every variant by hand.</p>
+<p>This only works on the sampling backend (<code>SamplingBackend</code>): it classifies each freely generated response as it comes in, rather than scoring a fixed set of candidate continuations. The exact/logprob backends (<code>HFLogitBackend</code>, <code>APILogprobBackend</code>) need the full candidate surface list up front, so they require an <em>enumerable</em> normalizer -- <code>Verbalizer</code> (via <code>all_surfaces()</code>) -- not a plain <code>Normalizer</code>. Pairing an open-ended normalizer with one of those backends raises <code>NonEnumerableNormalizerError</code> at construction time rather than failing later at query time.</p>
+<h3 id="opting-into-sampling-on-an-otherwise-exact-provider">Opting into sampling on an otherwise-exact provider<a class="headerlink" href="#opting-into-sampling-on-an-otherwise-exact-provider" title="Permanent link">&para;</a></h3>
+<p>If you'd rather pay for sampling than give up an open-ended normalizer -- even on a provider that would normally answer in one exact call -- pass <code>allow_sampling_fallback=True</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">dist</span> <span class="o">=</span> <span class="n">LLMDistribution</span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">provider</span><span class="p">,</span>  <span class="c1"># e.g. a local HuggingFaceProvider, or OpenAIProvider</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">verbalizer</span><span class="o">=</span><span class="n">IntNormalizer</span><span class="p">(),</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">allow_sampling_fallback</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span>
+</code></pre></div>
+<p>This emits a <code>SamplingFallbackWarning</code> and swaps in a <code>SamplingBackend</code> instead of raising -- the tradeoff is real (repeated <code>generate()</code> calls instead of one exact call; for API-backed providers, additional billed requests), so it stays opt-in rather than automatic. It only applies when the backend was auto-selected (an explicitly-supplied <code>backend=</code> is never swapped out) and never applies to <code>HFClassifierBackend</code>, which is a fixed classifier head sampling can't substitute for.</p>
+<p>Local models can often profitably sample in larger batches than the library default of 32; tune this with <code>sampling_batch_size</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">dist</span> <span class="o">=</span> <span class="n">LLMDistribution</span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">provider</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">verbalizer</span><span class="o">=</span><span class="n">IntNormalizer</span><span class="p">(),</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">allow_sampling_fallback</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">sampling_batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">)</span>
+</code></pre></div>
+<p><code>sampling_batch_size</code> applies to any <code>SamplingBackend</code> -- auto-selected or via the fallback above -- controlling how many completions are requested per <code>generate()</code> call.</p>
 <h2 id="how-the-backend-is-chosen">How the backend is chosen<a class="headerlink" href="#how-the-backend-is-chosen" title="Permanent link">&para;</a></h2>
 <p><code>LLMDistribution</code>/<code>classify()</code> auto-select the most capable backend for the given provider:</p>
 <ul>
@@ -1786,7 +1926,7 @@ when you want one.</p>
 <p>You can also pass an explicit <code>backend=</code> to <code>LLMDistribution</code> to override auto-selection.</p>
 <h2 id="reproducibility-seed">Reproducibility: <code>seed</code><a class="headerlink" href="#reproducibility-seed" title="Permanent link">&para;</a></h2>
 <p><code>classify()</code>, <code>query()</code>, <code>query_batch()</code>, and <code>fit_calibration()</code> all accept an optional <code>seed=</code> (default <code>None</code>), meaningful only on the <code>SamplingBackend</code> path:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">result</span> <span class="o">=</span> <span class="n">classify</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="s2">&quot;Is the sky blue? Answer yes or no.&quot;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">result</span> <span class="o">=</span> <span class="n">classify</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="s2">&quot;Is the sky blue? Answer yes or no.&quot;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </code></pre></div>
 <p><code>SamplingBackend</code> draws responses in batches (one <code>generate()</code> call per batch); each batch derives its own seed from the one you pass, so a rerun with the same seed reproduces the same sequence of samples rather than just replaying the first batch over and over.</p>
 <div class="admonition note">
@@ -1799,12 +1939,12 @@ when you want one.</p>
 </div>
 <h2 id="calibration">Calibration<a class="headerlink" href="#calibration" title="Permanent link">&para;</a></h2>
 <p>Raw model confidence is often over- or under-confident. Fit a calibration transform from held-out labeled examples:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">dist</span><span class="o">.</span><span class="n">fit_calibration</span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;The Earth orbits the Sun.&quot;</span><span class="p">,</span> <span class="s2">&quot;The Moon is made of cheese.&quot;</span><span class="p">],</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;platt&quot;</span><span class="p">,</span>   <span class="c1"># or &quot;temperature&quot;</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">result</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Water boils at 100°C at sea level.&quot;</span><span class="p">)</span>  <span class="c1"># now calibrated</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">dist</span><span class="o">.</span><span class="n">fit_calibration</span><span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;The Earth orbits the Sun.&quot;</span><span class="p">,</span> <span class="s2">&quot;The Moon is made of cheese.&quot;</span><span class="p">],</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;platt&quot;</span><span class="p">,</span>   <span class="c1"># or &quot;temperature&quot;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">result</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Water boils at 100°C at sea level.&quot;</span><span class="p">)</span>  <span class="c1"># now calibrated</span>
 </code></pre></div>
 <p><code>method="temperature"</code> needs only <code>scipy</code> (the <code>classification</code> extra); <code>method="platt"</code> additionally needs <code>scikit-learn</code> (the <code>calibration</code> extra).</p>
 <h2 id="gradient-workflows">Gradient workflows<a class="headerlink" href="#gradient-workflows" title="Permanent link">&para;</a></h2>
@@ -1812,7 +1952,7 @@ when you want one.</p>
 <h2 id="see-also">See also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://github.com/svivek/wordbase/blob/main/notebooks/03_classification.ipynb"><code>notebooks/03_classification.ipynb</code></a> — full narrative walkthrough</li>
-<li><a href="../../reference/distribution/">API reference: <code>LLMDistribution</code></a>, <a href="../../reference/classification/"><code>classify()</code>/<code>surface_logprobs()</code></a>, <a href="../../reference/verbalizer/"><code>Verbalizer</code></a>, <a href="../../reference/calibration/">Calibration</a></li>
+<li><a href="../../reference/distribution/">API reference: <code>LLMDistribution</code></a>, <a href="../../reference/classification/"><code>classify()</code>/<code>surface_logprobs()</code></a>, <a href="../../reference/verbalizer/"><code>Verbalizer</code>/<code>Normalizer</code></a>, <a href="../../reference/calibration/">Calibration</a></li>
 </ul>
 
 

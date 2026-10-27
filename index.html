@@ -800,6 +800,34 @@
   
   
     <li class="md-nav__item">
+      <a href="guides/ollama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="guides/huggingface-inference/" class="md-nav__link">
         
   
@@ -1146,7 +1174,7 @@
   <span class="md-ellipsis">
     
   
-    Verbalizer
+    Verbalizer / Normalizer
   
 
     
@@ -1464,6 +1492,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/providers/ollama_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1580,14 +1636,14 @@
 
 
 <h1 id="wordbase">WordBase<a class="headerlink" href="#wordbase" title="Permanent link">&para;</a></h1>
-<p>A lightweight Python wrapper for accessing LLMs from multiple sources — HuggingFace (local or hosted), OpenAI, Anthropic, Google Gemini, Amazon Bedrock, and vLLM — through one unified interface.</p>
+<p>A lightweight Python wrapper for accessing LLMs from multiple sources — HuggingFace (local or hosted), OpenAI, Anthropic, Google Gemini, Amazon Bedrock, Ollama, and vLLM — through one unified interface.</p>
 <ul>
 <li><strong>Unified interface</strong> — the same <code>generate()</code>/<code>generate_batch()</code> contract across every provider</li>
 <li><strong>Token-level information</strong> — log-probabilities per token, when the provider supports it</li>
 <li><strong>Built-in caching</strong> — in-memory, SQLite, or one-JSON-file-per-entry, opt out per request with <code>use_cache=False</code></li>
 <li><strong>Batch processing</strong> — true padded batching locally (HuggingFace/vLLM), concurrent requests for API providers</li>
 <li><strong>Classification primitives</strong> — turn any provider into a calibrated label distribution via <a href="reference/distribution/"><code>LLMDistribution</code></a>/<a href="reference/classification/"><code>classify()</code></a>, without hand-rolling prompt-to-logprob plumbing</li>
-<li><strong>Multimodal (text + image) input</strong> — supported for <a href="guides/huggingface/#multimodal-vision-input">HuggingFace</a>, <a href="guides/openai/#multimodal-vision-input">OpenAI</a>, <a href="guides/anthropic/#multimodal-vision-input">Anthropic</a>, <a href="guides/google/#multimodal-vision-input">Google Gemini</a>, and <a href="guides/bedrock/#multimodal-vision-input">Amazon Bedrock</a>; not yet supported for vLLM or the HuggingFace Inference API</li>
+<li><strong>Multimodal (text + image) input</strong> — supported for <a href="guides/huggingface/#multimodal-vision-input">HuggingFace</a>, <a href="guides/openai/#multimodal-vision-input">OpenAI</a>, <a href="guides/anthropic/#multimodal-vision-input">Anthropic</a>, <a href="guides/google/#multimodal-vision-input">Google Gemini</a>, and <a href="guides/bedrock/#multimodal-vision-input">Amazon Bedrock</a>, and <a href="guides/ollama/#multimodal-vision-input">Ollama</a>; not yet supported for vLLM or the HuggingFace Inference API</li>
 <li><strong><a href="guides/tool-calling/">Tool / function calling</a></strong> — offer <code>Tool</code> definitions to every provider; the model requests calls, you execute them and feed the results back</li>
 </ul>
 <h2 id="where-to-go-next">Where to go next<a class="headerlink" href="#where-to-go-next" title="Permanent link">&para;</a></h2>

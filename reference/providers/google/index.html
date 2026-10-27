@@ -733,6 +733,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../guides/ollama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../guides/huggingface-inference/" class="md-nav__link">
         
   
@@ -1084,7 +1112,7 @@
   <span class="md-ellipsis">
     
   
-    Verbalizer
+    Verbalizer / Normalizer
   
 
     
@@ -1486,6 +1514,34 @@
     
   
     Bedrock
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ollama_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
   
 
     
@@ -2020,7 +2076,7 @@ The text is wrapped in a single user message for the count.</p>
 <a id="__codelineno-0-506" name="__codelineno-0-506"></a>        <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
 <a id="__codelineno-0-507" name="__codelineno-0-507"></a>        <span class="n">contents</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;parts&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">}]}],</span>
 <a id="__codelineno-0-508" name="__codelineno-0-508"></a>    <span class="p">)</span>
-<a id="__codelineno-0-509" name="__codelineno-0-509"></a>    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">total_tokens</span>
+<a id="__codelineno-0-509" name="__codelineno-0-509"></a>    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">total_tokens</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

@@ -14,7 +14,7 @@
         <link rel="prev" href="../google/">
       
       
-        <link rel="next" href="../../../contributing/">
+        <link rel="next" href="../ollama_provider/">
       
       
         
@@ -733,6 +733,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../guides/ollama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../guides/huggingface-inference/" class="md-nav__link">
         
   
@@ -1084,7 +1112,7 @@
   <span class="md-ellipsis">
     
   
-    Verbalizer
+    Verbalizer / Normalizer
   
 
     
@@ -1494,6 +1522,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ollama_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2008,10 +2064,11 @@ credentials (e.g. from STS AssumeRole).</p>
 
     <div class="doc doc-contents ">
 
-        <p>Estimate token count using a character-based approximation.</p>
-<p>The Bedrock converse API does not provide a dedicated token counting
-endpoint. This method returns a rough estimate of 1 token per 4
-characters and emits a UserWarning.</p>
+        <p>Not supported: the Bedrock converse API cannot count tokens.</p>
+<p>Bedrock hosts models with many different tokenizers and exposes no
+endpoint to tokenize text, so any count would be a guess. Exact
+usage for a request is reported in each completion's
+<code>metadata["input_tokens"]</code> and <code>metadata["output_tokens"]</code>.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2034,7 +2091,7 @@ characters and emits a UserWarning.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Text to estimate token count for.</p>
+                <p>Text to count tokens for.</p>
               </div>
             </td>
             <td>
@@ -2045,7 +2102,7 @@ characters and emits a UserWarning.</p>
     </table>
 
 
-    <p><span class="doc-section-title">Returns:</span></p>
+<p><span class="doc-section-title">Raises:</span></p>
     <table>
       <thead>
         <tr>
@@ -2056,11 +2113,11 @@ characters and emits a UserWarning.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="int">int</span></code>
+                  <code><span title="NotImplementedError">NotImplementedError</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Estimated number of tokens (at least 1).</p>
+                <p>Always.</p>
               </div>
             </td>
           </tr>
@@ -2089,28 +2146,26 @@ characters and emits a UserWarning.</p>
 <span class="normal"><a href="#__codelineno-0-500">500</a></span>
 <span class="normal"><a href="#__codelineno-0-501">501</a></span>
 <span class="normal"><a href="#__codelineno-0-502">502</a></span>
-<span class="normal"><a href="#__codelineno-0-503">503</a></span>
-<span class="normal"><a href="#__codelineno-0-504">504</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-484" name="__codelineno-0-484"></a><span class="k">def</span><span class="w"> </span><span class="nf">count_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<a id="__codelineno-0-485" name="__codelineno-0-485"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Estimate token count using a character-based approximation.</span>
+<span class="normal"><a href="#__codelineno-0-503">503</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-484" name="__codelineno-0-484"></a><span class="k">def</span><span class="w"> </span><span class="nf">count_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-0-485" name="__codelineno-0-485"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Not supported: the Bedrock converse API cannot count tokens.</span>
 <a id="__codelineno-0-486" name="__codelineno-0-486"></a>
-<a id="__codelineno-0-487" name="__codelineno-0-487"></a><span class="sd">    The Bedrock converse API does not provide a dedicated token counting</span>
-<a id="__codelineno-0-488" name="__codelineno-0-488"></a><span class="sd">    endpoint. This method returns a rough estimate of 1 token per 4</span>
-<a id="__codelineno-0-489" name="__codelineno-0-489"></a><span class="sd">    characters and emits a UserWarning.</span>
-<a id="__codelineno-0-490" name="__codelineno-0-490"></a>
-<a id="__codelineno-0-491" name="__codelineno-0-491"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-492" name="__codelineno-0-492"></a><span class="sd">        text: Text to estimate token count for.</span>
-<a id="__codelineno-0-493" name="__codelineno-0-493"></a>
-<a id="__codelineno-0-494" name="__codelineno-0-494"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-495" name="__codelineno-0-495"></a><span class="sd">        Estimated number of tokens (at least 1).</span>
-<a id="__codelineno-0-496" name="__codelineno-0-496"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-497" name="__codelineno-0-497"></a>    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<a id="__codelineno-0-498" name="__codelineno-0-498"></a>        <span class="s2">&quot;BedrockProvider uses a character-based token count estimate &quot;</span>
-<a id="__codelineno-0-499" name="__codelineno-0-499"></a>        <span class="s2">&quot;(4 characters per token). For exact counts, use a &quot;</span>
-<a id="__codelineno-0-500" name="__codelineno-0-500"></a>        <span class="s2">&quot;model-specific tokenizer.&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-501" name="__codelineno-0-501"></a>        <span class="ne">UserWarning</span><span class="p">,</span>
-<a id="__codelineno-0-502" name="__codelineno-0-502"></a>        <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-0-487" name="__codelineno-0-487"></a><span class="sd">    Bedrock hosts models with many different tokenizers and exposes no</span>
+<a id="__codelineno-0-488" name="__codelineno-0-488"></a><span class="sd">    endpoint to tokenize text, so any count would be a guess. Exact</span>
+<a id="__codelineno-0-489" name="__codelineno-0-489"></a><span class="sd">    usage for a request is reported in each completion&#39;s</span>
+<a id="__codelineno-0-490" name="__codelineno-0-490"></a><span class="sd">    ``metadata[&quot;input_tokens&quot;]`` and ``metadata[&quot;output_tokens&quot;]``.</span>
+<a id="__codelineno-0-491" name="__codelineno-0-491"></a>
+<a id="__codelineno-0-492" name="__codelineno-0-492"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-493" name="__codelineno-0-493"></a><span class="sd">        text: Text to count tokens for.</span>
+<a id="__codelineno-0-494" name="__codelineno-0-494"></a>
+<a id="__codelineno-0-495" name="__codelineno-0-495"></a><span class="sd">    Raises:</span>
+<a id="__codelineno-0-496" name="__codelineno-0-496"></a><span class="sd">        NotImplementedError: Always.</span>
+<a id="__codelineno-0-497" name="__codelineno-0-497"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-498" name="__codelineno-0-498"></a>    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+<a id="__codelineno-0-499" name="__codelineno-0-499"></a>        <span class="s2">&quot;Bedrock has no token-counting endpoint, and its hosted models &quot;</span>
+<a id="__codelineno-0-500" name="__codelineno-0-500"></a>        <span class="s2">&quot;use different tokenizers, so WordBase will not guess. Read &quot;</span>
+<a id="__codelineno-0-501" name="__codelineno-0-501"></a>        <span class="s2">&quot;exact usage from completion[&#39;metadata&#39;][&#39;input_tokens&#39;] and &quot;</span>
+<a id="__codelineno-0-502" name="__codelineno-0-502"></a>        <span class="s2">&quot;[&#39;output_tokens&#39;] after generate().&quot;</span>
 <a id="__codelineno-0-503" name="__codelineno-0-503"></a>    <span class="p">)</span>
-<a id="__codelineno-0-504" name="__codelineno-0-504"></a>    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">//</span> <span class="mi">4</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

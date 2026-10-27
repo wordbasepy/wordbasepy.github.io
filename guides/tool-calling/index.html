@@ -738,6 +738,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ollama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../huggingface-inference/" class="md-nav__link">
         
   
@@ -1208,7 +1236,7 @@
   <span class="md-ellipsis">
     
   
-    Verbalizer
+    Verbalizer / Normalizer
   
 
     
@@ -1526,6 +1554,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/providers/ollama_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1790,6 +1846,12 @@
 <td>Yes</td>
 <td><code>auto</code>/<code>required</code>/forced; <code>"none"</code> omits <code>toolConfig</code> entirely (converse has no "none" mode)</td>
 <td></td>
+</tr>
+<tr>
+<td>Ollama</td>
+<td>Yes</td>
+<td><code>auto</code> and <code>"none"</code> only (<code>"none"</code> withholds the tools); <code>required</code>/forced emit a <code>UserWarning</code> since the server cannot force a call</td>
+<td>The client drops call ids — <code>ToolCall.id</code> is synthesized as the tool's name, so two calls to the same tool in one turn share an id. The model must support tools</td>
 </tr>
 <tr>
 <td>HuggingFace Inference API</td>
